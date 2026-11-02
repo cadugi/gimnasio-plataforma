@@ -1,0 +1,6 @@
+{
+  "vapid_public": "CLAVE PÚBLICA VAPID (base64url)",
+  "altas_url": "https://127.0.0.1/alta/api.php",
+  "altas_host": "whatsapp.gimnasio.example",
+  "altas_token": "CAMBIAR (el hash SHA-256 va en Altas: settings.reservas_match_token_hash)"
+}

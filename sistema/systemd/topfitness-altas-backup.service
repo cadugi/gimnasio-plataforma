@@ -1,0 +1,9 @@
+[Unit]
+Description=Top Fitness copia de la base de contratos
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/topfitness-altas-backup
+UMask=0077
+PrivateTmp=true
+NoNewPrivileges=true
+ProtectHome=true

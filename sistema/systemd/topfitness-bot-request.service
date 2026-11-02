@@ -1,0 +1,7 @@
+[Unit]
+Description=Acción pedida desde el Centro de control sobre el bot de WhatsApp
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/topfitness-bot-admin request
+NoNewPrivileges=true
+PrivateTmp=true

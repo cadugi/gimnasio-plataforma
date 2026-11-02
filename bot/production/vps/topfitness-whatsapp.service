@@ -1,0 +1,24 @@
+[Unit]
+Description=TopFitness WhatsApp test webhook
+After=network-online.target
+Wants=network-online.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+User=topfitness
+Group=topfitness
+WorkingDirectory=/opt/topfitness
+ExecStart=/usr/bin/python3 -u -m bot.whatsapp_webhook
+PassEnvironment=WA_APP_SECRET WA_VERIFY_TOKEN WA_TEST_PHONE_NUMBER_ID WA_ACCESS_TOKEN WA_GRAPH_VERSION WA_DIRECTORY_JSON WA_BACKEND_URL WA_BACKEND_SECRET WA_TEST_MODE
+Restart=always
+RestartSec=10
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/topfitness/.local
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target

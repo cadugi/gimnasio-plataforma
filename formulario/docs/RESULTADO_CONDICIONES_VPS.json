@@ -1,0 +1,17 @@
+{
+  "release": "/opt/topfitness-formulario/releases/20261016T170550Z",
+  "privacy_use_authorized_by_owner": true,
+  "remaining": "Cotejar frase de la sección cuarta; requisitos operativos de domiciliación conservados",
+  "import": {
+    "created": 2,
+    "approved": false,
+    "signed_contracts_modified": false
+  },
+  "checks": {
+    "client_admin_isolation": true,
+    "privacy_authorization_recorded": true,
+    "signature_still_requires_contract_transcription": true,
+    "reservas_expected_401_actual_200": true,
+    "reservas_configuration_changed_by_this_deployment": false
+  }
+}

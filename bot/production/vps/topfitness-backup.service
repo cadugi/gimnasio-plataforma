@@ -1,0 +1,8 @@
+[Unit]
+Description=TopFitness encrypted database and bot state backup
+After=mariadb.service
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 /opt/topfitness/production/vps/backup.py
+UMask=0077
+PrivateTmp=true

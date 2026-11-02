@@ -1,0 +1,18 @@
+--- /dev/fd/63	2026-10-30 17:07:41.823199478 +0000
++++ deploy/nginx/topfitness-web.conf.new	2026-10-30 17:07:41.822199495 +0000
+@@ -32,7 +32,14 @@
+ location = /admin { return 301 /admin/; }
+ location ~ "^/(reservas|admin)/(conexion|diag_db|dbtest)[.]php$" { return 404; }
+ location = /reservas/admin.html { return 404; }
+-location ~ "^/reservas/(?<tf_public>obtener_horarios_clase|comprobar_disponibilidad|obtener_limite_inscripciones|inscribir_cliente|identidad|mis_reservas|service)[.]php$" {
++location = /reservas/avisos-recepcion.html { return 404; }   # solo por /admin/, tras el acceso de recepción
++location = /reservas/sw.js {
++    alias /opt/topfitness-web/public/sw.js;
++    default_type application/javascript;
++    add_header Cache-Control "no-cache" always;
++    add_header Service-Worker-Allowed "/reservas/" always;
++}
++location ~ "^/reservas/(?<tf_public>obtener_horarios_clase|comprobar_disponibilidad|obtener_limite_inscripciones|inscribir_cliente|identidad|mis_reservas|service|movil|avisos|oferta|mis_clases)[.]php$" {
+     # Se retira esta protección de preparación después de validar la copia final.
+     auth_basic_user_file /etc/nginx/topfitness-admin.htpasswd;
+     include fastcgi_params;

@@ -1,0 +1,5 @@
+const {chromium}=require('/home/ubuntu/.npm/_npx/381cec31605a419a/node_modules/playwright-core');
+(async()=>{const b=await chromium.launch({executablePath:'/home/ubuntu/.cache/ms-playwright/chromium-1248/chrome-linux64/chrome',args:['--no-sandbox']});const p=await b.newPage({viewport:{width:820,height:1180}});
+p.on('console',m=>console.log('console',m.type(),m.text()));p.on('response',r=>{if(r.status()>=400)console.log('HTTP',r.status(),r.url());});
+await p.goto('http://127.0.0.1:8099/');await p.waitForTimeout(1000);if(await p.locator('[data-action=login_screen]').count())await p.click('[data-action=login_screen]');await p.fill('#username','e2e.admin');await p.fill('#password',process.env.TF_E2E_PASSWORD);await p.click('[data-action=login]');await p.waitForTimeout(1500);console.log(await p.locator('[data-action]').evaluateAll(n=>n.map(x=>x.dataset.action+':'+x.innerText.slice(0,30)).join(' / ')));console.log((await p.locator('body').innerText()).slice(0,500));
+await p.screenshot({path:'/tmp/claude-1000/-home-ubuntu/f295b7ac-87b7-4d6f-9112-20c6a042c263/scratchpad/peek.png'});await b.close();})();

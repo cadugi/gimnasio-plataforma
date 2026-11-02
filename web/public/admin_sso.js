@@ -1,0 +1,1 @@
+/* Administrative booking uses its original unrestricted staff form. */

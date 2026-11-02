@@ -1,0 +1,8 @@
+{
+  "db_socket": "/run/mysqld/mysqld.sock",
+  "db_user": "tf_push",
+  "db_password": "CAMBIAR (usuario con permisos mínimos; fichero 0600 de topfitness-push, fuera del repositorio)",
+  "db_name": "topfitness_reservas",
+  "vapid_private_key_file": "/etc/topfitness-push/vapid_private.pem",
+  "vapid_subject": "mailto:CAMBIAR@example.com"
+}

@@ -1,0 +1,10 @@
+[Unit]
+Description=Envía cada minuto los correos pendientes de Top Fitness
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=1min
+AccuracySec=10s
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,21 @@
+<?php
+declare(strict_types=1);
+require dirname(__DIR__).'/formulario/app/Service.php';
+$root=dirname(__DIR__).'/formulario';$tmp=sys_get_temp_dir().'/tf-members-'.bin2hex(random_bytes(8));mkdir($tmp,0700);$keys=$tmp.'/keys';file_put_contents($keys,jencode(array_fill_keys(['encryption','audit','lookup','backup'],base64_encode(random_bytes(32)))));
+$s=new Service($root,['database'=>$tmp.'/db.sqlite','key_file'=>$keys,'environment'=>'test']);foreach(glob($root.'/migrations/*.sql') as $f)$s->db->exec(file_get_contents($f));$passed=0;
+$ok=function($v,$label)use(&$passed){if(!$v)throw new RuntimeException($label);$passed++;};
+$bad=function($fn,int $status)use($ok){try{$fn();}catch(AppError $e){$ok($e->status===$status,'HTTP esperado');return;}$ok(false,'Aceptó una petición no permitida');};
+$u=uuid();$s->sql("INSERT INTO users(id,username,password_hash,role,active,epoch,created_at) VALUES(?,?,'x','admin',1,1,?)",[$u,'lectora',instant()]);$_SESSION=['mode'=>'admin','user_id'=>$u,'epoch'=>1];
+$one=uuid();$two=uuid();
+foreach([[$one,'Ana','García','INNUX:101','90210','ACTIVE'],[$two,'Ana','García',null,null,'BAJA']] as [$id,$name,$surname,$ref,$number,$state])$s->sql('INSERT INTO members(id,internal_reference,personal_enc,document_fingerprint,innux_reference,innux_number,state,created_at) VALUES(?,?,?,?,?,?,?,?)',[$id,'TF-S-'.$id,$s->seal(['name'=>$name,'surname'=>$surname,'phone'=>'+34 612 345 678','email'=>'prueba@example.invalid']),$id,$ref,$number,$state,instant()]);
+$third=uuid();$s->sql('INSERT INTO members(id,internal_reference,personal_enc,document_fingerprint,created_at) VALUES(?,?,?,?,?)',[$third,'TF-S-'.$third,$s->seal(['name'=>'Luis','surname'=>'López','phone'=>'699000000','email'=>'ana@example.invalid']),$third,instant()]);
+$ok(count($s->memberSearch(['query'=>'ana'])['items'])===2,'Un nombre no coincide solo porque aparezca en el correo de otra persona');
+$r=$s->memberSearch(['query'=>'ana garcia']);$ok(count($r['items'])===2,'Búsqueda sin tildes y sin ocultar bajas');$ok(count($s->memberSearch(['query'=>'612345'])['items'])===2,'Teléfono normalizado');$ok(count($s->memberSearch(['query'=>'90210'])['items'])===1,'Número exacto');$ok(count($s->memberSearch(['query'=>'prueba@example.invalid'])['items'])===2,'Correo');$ok(!$s->memberSearch(['query'=>"' OR 1=1 --"])['items'],'Entrada SQL tratada como texto');
+$bad(fn()=>$s->memberSearch(['query'=>'a']),400);$bad(fn()=>$s->memberSearch(['query'=>str_repeat('a',61)]),400);
+$before=(int)$s->one('SELECT COUNT(*) n FROM members')['n'];$ok($s->memberDetail(['innux_reference'=>'INNUX:999'])['member']===null,'No vincular por número o nombre');$ok((int)$s->one('SELECT COUNT(*) n FROM members')['n']===$before,'Consultar no crea socios');$ok($s->memberDetail(['id'=>$one])['member']['id']===$one,'Ficha por id');$ok(!isset($s->memberDetail(['id'=>$one])['member']['document']),'Sin documento completo');
+$id=uuid();$data=[['client_id'=>'101','number'=>'90210','name'=>'Ana García','phone'=>'612345678','email'=>'prueba@example.invalid','active'=>true],['client_id'=>'102','number'=>'5678','name'=>'Ana García','phone'=>'612345678','active'=>true]];
+$s->sql("INSERT INTO innux_searches VALUES(?,?,?,'DONE',?,NULL,?,?)",[$id,$u,$s->seal('ana','innux_search_query'),$s->seal($data,'innux_search'),instant(),instant()]);$r=$s->memberInnuxResult(['id'=>$id]);$ok($r['items'][0]['portal_id']===$one,'Vínculo explícito');$ok($r['items'][1]['portal_id']===null,'No unir personas con el mismo nombre/teléfono');$ok(count($s->memberInnuxResult(['id'=>$id,'client_id'=>'102'])['items'])===1,'Selección exacta dentro del resultado');$bad(fn()=>$s->memberInnuxResult(['id'=>$id,'client_id'=>'999']),404);
+$s->sql("UPDATE users SET role='staff' WHERE id=?",[$u]);$ok(!$s->memberDetail(['id'=>$one])['dues_allowed'],'Recepción no obtiene permisos de finanzas nuevos');
+$other=uuid();$s->sql("INSERT INTO users(id,username,password_hash,role,active,epoch,created_at) VALUES(?,?,'x','admin',1,1,?)",[$other,'otra',instant()]);$_SESSION['user_id']=$other;$bad(fn()=>$s->memberInnuxResult(['id'=>$id]),404);
+$_SESSION=[];$bad(fn()=>$s->memberSearch(['query'=>'ana']),401);$ok($s->verifyAudit(),'Auditoría íntegra');
+echo "Members: $passed passed\n";unset($s);foreach(glob($tmp.'/*') as $f)unlink($f);rmdir($tmp);

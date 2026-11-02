@@ -1,0 +1,28 @@
+[Unit]
+Description=Top Fitness remitente Web Push (aislado)
+After=mariadb.service network-online.target
+Wants=network-online.target
+
+[Service]
+User=topfitness-push
+Group=topfitness-push
+ExecStart=/opt/topfitness-push/venv/bin/python /opt/topfitness-push/push_sender.py /etc/topfitness-push/sender.json
+Restart=always
+RestartSec=5
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectKernelTunables=yes
+ProtectControlGroups=yes
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+RestrictNamespaces=yes
+LockPersonality=yes
+MemoryDenyWriteExecute=yes
+SystemCallFilter=@system-service
+CapabilityBoundingSet=
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target

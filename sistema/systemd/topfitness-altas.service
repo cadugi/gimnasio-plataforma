@@ -1,0 +1,25 @@
+[Unit]
+Description=Top Fitness altas - isolated PHP backend
+After=network.target
+[Service]
+Type=simple
+User=topfitness-altas
+Group=www-data
+SupplementaryGroups=topfitness-altas
+RuntimeDirectory=topfitness-altas
+RuntimeDirectoryMode=0750
+LoadCredentialEncrypted=keys:/etc/credstore.encrypted/topfitness-altas.keys
+ExecStart=/usr/sbin/php-fpm8.3 -F -y /etc/topfitness-altas/php-fpm.conf -d extension=/opt/topfitness-formulario/runtime/php-sqlite/usr/lib/php/20230831/pdo_sqlite.so
+Restart=on-failure
+RestartSec=3
+UMask=0077
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+PrivateNetwork=true
+ReadWritePaths=/var/lib/topfitness-altas /run/topfitness-altas
+MemoryMax=512M
+TasksMax=32
+[Install]
+WantedBy=multi-user.target

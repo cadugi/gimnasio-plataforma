@@ -1,0 +1,361 @@
+{
+  "connected": true,
+  "version": "12.0.2269.0",
+  "database": "InnuxSports",
+  "view_definition": true,
+  "client_columns": [
+    {
+      "name": "IDCliente",
+      "type": "int",
+      "nullable": false,
+      "identity": true,
+      "default": null
+    },
+    {
+      "name": "Activo",
+      "type": "bit",
+      "nullable": true,
+      "identity": false,
+      "default": null
+    },
+    {
+      "name": "NIF",
+      "type": "nvarchar",
+      "nullable": true,
+      "identity": false,
+      "default": null
+    },
+    {
+      "name": "Nome",
+      "type": "nvarchar",
+      "nullable": true,
+      "identity": false,
+      "default": null
+    },
+    {
+      "name": "DataAdmissao",
+      "type": "datetime",
+      "nullable": true,
+      "identity": false,
+      "default": null
+    },
+    {
+      "name": "IDClienteGrupo",
+      "type": "int",
+      "nullable": true,
+      "identity": false,
+      "default": null
+    },
+    {
+      "name": "Morada",
+      "type": "nvarchar",
+      "nullable": true,
+      "identity": false,
+      "default": null
+    },
+    {
+      "name": "Morada2",
+      "type": "nvarchar",
+      "nullable": true,
+      "identity": false,
+      "default": null
+    },
+    {
+      "name": "CodigoPostal",
+      "type": "nvarchar",
+      "nullable": true,
+      "identity": false,
+      "default": null
+    },
+    {
+      "name": "Localidade",
+      "type": "nvarchar",
+      "nullable": true,
+      "identity": false,
+      "default": null
+    },
+    {
+      "name": "TelefoneCasa",
+      "type": "nvarchar",
+      "nullable": true,
+      "identity": false,
+      "default": null
+    },
+    {
+      "name": "TelefoneTrabalho",
+      "type": "nvarchar",
+      "nullable": true,
+      "identity": false,
+      "default": null
+    },
+    {
+      "name": "Telemovel",
+      "type": "nvarchar",
+      "nullable": true,
+      "identity": false,
+      "default": null
+    },
+    {
+      "name": "Fax",
+      "type": "nvarchar",
+      "nullable": true,
+      "identity": false,
+      "default": null
+    },
+    {
+      "name": "DataNascimento",
+      "type": "datetime",
+      "nullable": true,
+      "identity": false,
+      "default": null
+    },
+    {
+      "name": "Profissao",
+      "type": "nvarchar",
+      "nullable": true,
+      "identity": false,
+      "default": null
+    },
+    {
+      "name": "EstadoCivil",
+      "type": "nvarchar",
+      "nullable": true,
+      "identity": false,
+      "default": null
+    },
+    {
+      "name": "MotivoAdmissao",
+      "type": "nvarchar",
+      "nullable": true,
+      "identity": false,
+      "default": null
+    },
+    {
+      "name": "Email",
+      "type": "nvarchar",
+      "nullable": true,
+      "identity": false,
+      "default": null
+    },
+    {
+      "name": "Web",
+      "type": "nvarchar",
+      "nullable": true,
+      "identity": false,
+      "default": null
+    },
+    {
+      "name": "Notas",
+      "type": "nvarchar",
+      "nullable": true,
+      "identity": false,
+      "default": null
+    },
+    {
+      "name": "Fotografia",
+      "type": "image",
+      "nullable": true,
+      "identity": false,
+      "default": null
+    },
+    {
+      "name": "Sexo",
+      "type": "nvarchar",
+      "nullable": true,
+      "identity": false,
+      "default": null
+    },
+    {
+      "name": "IDEntidade",
+      "type": "int",
+      "nullable": true,
+      "identity": false,
+      "default": null
+    },
+    {
+      "name": "NIB",
+      "type": "nvarchar",
+      "nullable": true,
+      "identity": false,
+      "default": null
+    },
+    {
+      "name": "IBAN",
+      "type": "nvarchar",
+      "nullable": true,
+      "identity": false,
+      "default": null
+    },
+    {
+      "name": "BICSWIFT",
+      "type": "nvarchar",
+      "nullable": true,
+      "identity": false,
+      "default": null
+    },
+    {
+      "name": "ADC",
+      "type": "nvarchar",
+      "nullable": true,
+      "identity": false,
+      "default": null
+    },
+    {
+      "name": "InicioDD",
+      "type": "datetime",
+      "nullable": true,
+      "identity": false,
+      "default": null
+    },
+    {
+      "name": "FimDD",
+      "type": "datetime",
+      "nullable": true,
+      "identity": false,
+      "default": null
+    },
+    {
+      "name": "DebitoDirecto",
+      "type": "bit",
+      "nullable": true,
+      "identity": false,
+      "default": null
+    },
+    {
+      "name": "EntidadeCredora",
+      "type": "nvarchar",
+      "nullable": true,
+      "identity": false,
+      "default": null
+    },
+    {
+      "name": "ReferenciaInicial",
+      "type": "nvarchar",
+      "nullable": true,
+      "identity": false,
+      "default": null
+    },
+    {
+      "name": "DiaPreferencial",
+      "type": "decimal",
+      "nullable": true,
+      "identity": false,
+      "default": null
+    },
+    {
+      "name": "TipoEstadoADC",
+      "type": "int",
+      "nullable": true,
+      "identity": false,
+      "default": null
+    },
+    {
+      "name": "EstadoADC",
+      "type": "bit",
+      "nullable": true,
+      "identity": false,
+      "default": null
+    },
+    {
+      "name": "Pais",
+      "type": "nvarchar",
+      "nullable": true,
+      "identity": false,
+      "default": null
+    },
+    {
+      "name": "Numero",
+      "type": "int",
+      "nullable": true,
+      "identity": false,
+      "default": null
+    },
+    {
+      "name": "Minucia",
+      "type": "nvarchar",
+      "nullable": true,
+      "identity": false,
+      "default": null
+    },
+    {
+      "name": "Desconto",
+      "type": "decimal",
+      "nullable": true,
+      "identity": false,
+      "default": null
+    },
+    {
+      "name": "NumeroAntigo",
+      "type": "int",
+      "nullable": true,
+      "identity": false,
+      "default": null
+    },
+    {
+      "name": "SemDedo",
+      "type": "bit",
+      "nullable": true,
+      "identity": false,
+      "default": null
+    },
+    {
+      "name": "Minucia8k",
+      "type": "image",
+      "nullable": true,
+      "identity": false,
+      "default": null
+    },
+    {
+      "name": "Minucia8k1",
+      "type": "image",
+      "nullable": true,
+      "identity": false,
+      "default": null
+    },
+    {
+      "name": "TitularDD",
+      "type": "nvarchar",
+      "nullable": true,
+      "identity": false,
+      "default": null
+    },
+    {
+      "name": "Password",
+      "type": "nvarchar",
+      "nullable": true,
+      "identity": false,
+      "default": null
+    },
+    {
+      "name": "NaoSocio",
+      "type": "bit",
+      "nullable": true,
+      "identity": false,
+      "default": null
+    },
+    {
+      "name": "TerminalID",
+      "type": "int",
+      "nullable": true,
+      "identity": false,
+      "default": null
+    },
+    {
+      "name": "Saldo",
+      "type": "decimal",
+      "nullable": true,
+      "identity": false,
+      "default": null
+    },
+    {
+      "name": "ContaWebConfirmada",
+      "type": "bit",
+      "nullable": true,
+      "identity": false,
+      "default": null
+    }
+  ],
+  "candidate_objects": [],
+  "sql_write_statements_executed": 0,
+  "customer_rows_read": 0
+}

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="icons/favicon.ico" sizes="32x32">
+    <link rel="icon" type="image/png" sizes="64x64" href="icons/favicon-64.png">
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Top Fitness">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0a0d0a">
+    <title>TOP FITNESS - APÚNTATE A TUS CLASES</title>
+    <link rel="preload" href="fonts/BebasNeue-400.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/Barlow-600.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="index.css?v=7">
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
+</head>
+<body>
+    <header class="top-banner">
+        <div class="logo-left">
+            <img src="img/logo-tf.png" alt="Top Fitness">
+        </div>
+        <div class="banner-center">
+            <h1 class="banner-text">¡APÚNTATE AQUÍ A TUS CLASES!</h1>
+            <p class="banner-sub">Toca una clase para reservar tu plaza</p>
+        </div>
+        <div class="banner-right">
+            <div class="clock" aria-live="off">
+                <span class="clock-time" id="reloj-hora">--:--</span>
+                <span class="clock-date" id="reloj-fecha"></span>
+            </div>
+            <div class="logo-right">
+                <img src="img/logo-tfighters.png" alt="Top Fighters">
+            </div>
+        </div>
+    </header>
+
+    <main class="content">
+        <!-- COLUMNA IZQUIERDA: HORARIO -->
+        <section class="left-col">
+            <div class="schedule-container">
+                <img src="img/horario.jpg" alt="Horario semanal de clases" id="imgho">
+            </div>
+            <ul class="legend">
+                <li class="lg-sala">Clases de sala</li>
+                <li class="lg-fighters">Top Fighters</li>
+            </ul>
+            <p class="note">Reservas con 5 días de antelación. Si una clase está completa, te apuntas a la lista de espera.</p>
+        </section>
+
+        <!-- COLUMNA DERECHA: CLASES -->
+        <section class="right-col">
+            <div class="pick-up">
+                <ol class="steps">
+                    <li><b>1</b><span>Toca la clase</span></li>
+                    <li><b>2</b><span>Elige día y hora</span></li>
+                    <li><b>3</b><span>Confirma tu plaza</span></li>
+                </ol>
+                <svg class="arrow-down" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 6v32M10 26l14 14 14-14"/></svg>
+            </div>
+            <div class="buttons-grid" id="botones">
+                <button type="button" class="card fighters" style="--i:0" onclick="mostrarFormulario('boxeo')">
+                    <img src="img/cards/boxeo.jpg" alt="">
+                    <span class="name">Boxeo</span>
+                </button>
+                <button type="button" class="card" style="--i:1" onclick="mostrarFormulario('ciclo')">
+                    <img src="img/cards/ciclo.jpg" alt="">
+                    <span class="name">Ciclo</span>
+                </button>
+                <button type="button" class="card" style="--i:2" onclick="mostrarFormulario('combat')">
+                    <img src="img/cards/combat.jpg" alt="">
+                    <span class="name">Combat</span>
+                </button>
+                <button type="button" class="card" style="--i:3" onclick="mostrarFormulario('core')">
+                    <img src="img/cards/core.jpg" alt="">
+                    <span class="name">Core</span>
+                </button>
+                <button type="button" class="card" style="--i:4" onclick="mostrarFormulario('full body')">
+                    <img src="img/cards/fullbody.jpg" alt="">
+                    <span class="name">Full Body</span>
+                </button>
+                <button type="button" class="card" style="--i:5" onclick="mostrarFormulario('gap')">
+                    <img src="img/cards/gap.jpg" alt="">
+                    <span class="name">GAP</span>
+                </button>
+                <button type="button" class="card" style="--i:6" onclick="mostrarFormulario('mantenimiento')">
+                    <img src="img/cards/mantenimiento.jpg" alt="">
+                    <span class="name">Mantenimiento</span>
+                </button>
+                <button type="button" class="card" style="--i:7" onclick="mostrarFormulario('pilates')">
+                    <img src="img/cards/pilates.jpg" alt="">
+                    <span class="name">Pilates</span>
+                </button>
+                <button type="button" class="card" style="--i:8" onclick="mostrarFormulario('pump')">
+                    <img src="img/cards/pump.jpg" alt="">
+                    <span class="name">Pump</span>
+                </button>
+                <button type="button" class="card fighters" style="--i:9" onclick="mostrarFormulario('THAI')">
+                    <img src="img/cards/muaythai.jpg" alt="">
+                    <span class="name">Muay Thai</span>
+                </button>
+                <button type="button" class="card" style="--i:10" onclick="mostrarFormulario('top dance')">
+                    <img src="img/cards/topdance.jpg" alt="">
+                    <span class="name">Top Dance</span>
+                </button>
+                <button type="button" class="card" style="--i:11" onclick="mostrarFormulario('trx')">
+                    <img src="img/cards/trx.jpg" alt="">
+                    <span class="name">TRX</span>
+                </button>
+                <button type="button" class="card" style="--i:12" onclick="mostrarFormulario('yoga')">
+                    <img src="img/cards/yoga.jpg" alt="">
+                    <span class="name">Yoga</span>
+                </button>
+                <button type="button" class="card" style="--i:13" onclick="mostrarFormulario('Espalda Sana')">
+                    <img src="img/cards/espalda-sana.jpg" alt="">
+                    <span class="name">Espalda Sana</span>
+                </button>
+                <button type="button" class="card" style="--i:14" onclick="mostrarFormulario('HIIT')">
+                    <img src="img/cards/hiit.jpg" alt="">
+                    <span class="name">HIIT</span>
+                </button>
+                <button type="button" class="card" style="--i:15" onclick="mostrarFormulario('funcional')">
+                    <img src="img/cards/funcional.jpg" alt="">
+                    <span class="name">Funcional</span>
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- FONDO DEL PANEL DE RESERVA -->
+    <div id="sheet-scrim" onclick="cancelarFormulario()"></div>
+
+    <!-- FORMULARIO (panel lateral) -->
+    <section id="formulario" class="formulario" role="dialog" aria-modal="true" aria-labelledby="form-titulo">
+        <div class="idle-bar" aria-hidden="true"></div>
+        <div class="sheet">
+            <header class="sheet-head">
+                <h2 id="form-titulo">Inscripción</h2>
+            </header>
+
+            <div class="sheet-body">
+                <!-- Paso 1: día y hora -->
+                <div class="paso paso-sesion">
+                    <h3 class="slots-title" id="slots-title">Elige día y hora</h3>
+                    <div id="dias-tabs" class="day-tabs" role="tablist" aria-label="Día"></div>
+                    <div id="horarios-lista" class="slots" role="radiogroup" aria-labelledby="slots-title"></div>
+                    <div class="select-container">
+                        <select id="selectHorarios" aria-label="Horarios disponibles"></select>
+                    </div>
+                    <div id="estado-cola" aria-live="polite"></div>
+                </div>
+
+                <!-- Paso 2: tus datos, con teclado en pantalla -->
+                <div class="paso paso-datos" hidden>
+                    <div class="resumen" id="resumen-sesion" aria-live="polite"></div>
+                    <div class="fields">
+                        <div class="field" data-campo="nombre">
+                            <label for="nombre">Nombre y apellidos</label>
+                            <input type="text" id="nombre" name="nombre" autocomplete="off" readonly inputmode="none" maxlength="100" placeholder="Toca aquí y escribe tu nombre" required>
+                        </div>
+                        <div class="field" data-campo="telefono">
+                            <label for="telefono">Teléfono</label>
+                            <input type="tel" id="telefono" name="telefono" autocomplete="off" readonly inputmode="none" maxlength="15" placeholder="Tu móvil: 9 cifras" required>
+                        </div>
+                    </div>
+                    <div id="teclado" class="teclado" aria-label="Teclado en pantalla"></div>
+                </div>
+            </div>
+
+            <footer class="sheet-foot">
+                <button id="btn-continuar" type="button" class="btn-primary" disabled>Continuar</button>
+                <button id="submit" type="button" class="btn-primary" onclick="inscribirCliente()" hidden>Confirmar reserva</button>
+                <button id="btn-volver" type="button" class="btn-ghost" onclick="cancelarFormulario()">Volver</button>
+                <button id="btn-atras" type="button" class="btn-ghost" hidden>Atrás</button>
+            </footer>
+        </div>
+    </section>
+
+    <!-- MODAL DE CONFIRMACIÓN CON QR -->
+    <div id="modal-overlay" onclick="cerrarModal()"></div>
+    <div id="modal-inscripcion" class="modal-inscripcion" role="alertdialog" aria-modal="true" aria-labelledby="textoModal" data-state="ok">
+        <button type="button" class="close-btn" onclick="cerrarModal()" aria-label="Cerrar">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+        <div class="modal-content">
+            <div class="state-icon" aria-hidden="true">
+                <svg class="i-ok" viewBox="0 0 52 52"><circle cx="26" cy="26" r="24"/><path d="M15 27l7 7 15-16"/></svg>
+                <svg class="i-wait" viewBox="0 0 52 52"><circle cx="26" cy="26" r="24"/><path d="M26 14v13l9 6"/></svg>
+                <svg class="i-error" viewBox="0 0 52 52"><circle cx="26" cy="26" r="24"/><path d="M26 15v14M26 36v1"/></svg>
+            </div>
+            <h2 id="textoModal"></h2>
+            <div id="qrContainer" style="display:none; margin-top: 20px; text-align: center;">
+                <p style="font-size: 14px; color: #999; margin-bottom: 15px;">Escanea para agregar a tu calendario:</p>
+                <div id="qrCode" style="display: inline-block; padding: 15px; background: white; border-radius: 8px;"></div>
+                <p style="font-size: 12px; color: #999; margin-top: 10px;">Escanea con tu dispositivo móvil</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="index.js?v=20261022"></script>
+    <script src="index-ui.js?v=7"></script>
+    <script src="index-teclado.js?v=2"></script>
+</body>
+</html>

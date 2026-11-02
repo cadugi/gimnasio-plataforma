@@ -1,0 +1,12 @@
+/* Menú inferior común (Reservar · Mis clases · Avisos). Botones ≥ 64 px, texto 18 px, contraste alto. */
+body.has-tabbar{padding-bottom:calc(84px + env(safe-area-inset-bottom))}
+:root{--tabbar-h:calc(68px + env(safe-area-inset-bottom,0px))}
+/* La hoja de reserva y la ventana de confirmación se apoyan SOBRE el menú inferior, para que sus botones queden libres. */
+body.has-tabbar .formulario,body.has-tabbar .modal-inscripcion{bottom:var(--tabbar-h)}
+body.has-tabbar .formulario,body.has-tabbar .formulario .sheet{max-height:calc(100dvh - var(--tabbar-h) - 12px)}
+body.has-tabbar .modal-inscripcion{max-height:calc(100dvh - var(--tabbar-h) - 12px);overflow-y:auto}
+.tabbar{position:fixed;left:0;right:0;bottom:0;z-index:50;display:grid;grid-template-columns:repeat(3,1fr);background:#0d110d;border-top:2px solid #22f03a;padding-bottom:env(safe-area-inset-bottom)}
+.tabbar a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:68px;padding:6px 4px;color:#d3dbd3;font:700 18px/1.15 'Barlow',system-ui,-apple-system,'Segoe UI',sans-serif;text-decoration:none;border-top:4px solid transparent;margin-top:-2px}
+.tabbar a svg{width:28px;height:28px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.tabbar a[aria-current="page"]{color:#22f03a;border-top-color:#22f03a;background:#101810}
+.tabbar a:focus-visible{outline:4px solid #22f03a;outline-offset:-4px}

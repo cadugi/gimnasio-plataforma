@@ -1,0 +1,40 @@
+# Secretos y credenciales
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+credentials*
+*creds*
+*secret*
+*token*
+service_creds.json
+mail.json
+
+# Datos personales y bases de datos
+*.sqlite
+*.sqlite3
+*.sqlite-*
+*.db
+*.xlsx
+*.csv
+*.pdf
+calendar_downloads/
+exports/
+uploads/
+storage/
+logs/
+*.log
+
+# Copias y artefactos
+venv/
+.venv/
+node_modules/
+__pycache__/
+*.pyc
+backup*/
+*.bak
+*.bak-*
+*.tar.gz
+.DS_Store

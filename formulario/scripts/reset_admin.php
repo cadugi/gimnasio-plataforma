@@ -1,0 +1,3 @@
+<?php
+declare(strict_types=1);
+require_once dirname(__DIR__).'/app/Service.php';ensure(PHP_SAPI==='cli','Solo consola.');$s=new Service(dirname(__DIR__),readConfig(dirname(__DIR__)));$raw=json_decode(stream_get_contents(STDIN),true,8,JSON_THROW_ON_ERROR);$_SESSION=['user_id'=>'local-administrator'];$existing=$s->one('SELECT id FROM users WHERE username=?',[$raw['username']??'']);$s->saveUser(['id'=>$existing['id']??'','username'=>$raw['username']??'','password'=>$raw['password']??'','role'=>'admin','active'=>true]);echo "Acceso administrativo configurado. No se muestra ni se guarda la contraseña en texto plano.\n";

@@ -1,0 +1,13 @@
+{
+  "indexes": [
+    {
+      "name": "PK_Clientes",
+      "is_unique": true,
+      "is_primary_key": true,
+      "column_name": "IDCliente",
+      "key_ordinal": 1
+    }
+  ],
+  "customer_rows_read": 0,
+  "write_statements_executed": 0
+}

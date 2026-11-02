@@ -1,0 +1,46 @@
+CREATE TABLE IF NOT EXISTS tf_people (
+ id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+ nombre VARCHAR(100) NOT NULL, telefono VARCHAR(20) NOT NULL,
+ external_reference VARCHAR(100) NULL, active BOOLEAN NOT NULL DEFAULT 1,
+ session_epoch INT NOT NULL DEFAULT 1, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS tf_permissions (
+ principal VARCHAR(30) NOT NULL, person_id BIGINT UNSIGNED NOT NULL,
+ PRIMARY KEY(principal,person_id), FOREIGN KEY(person_id) REFERENCES tf_people(id)
+) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS tf_links (
+ token_hash CHAR(64) PRIMARY KEY, principal VARCHAR(30) NOT NULL,
+ person_id BIGINT UNSIGNED NOT NULL, expires_at BIGINT NOT NULL,
+ used_at BIGINT NULL, epoch INT NOT NULL,
+ FOREIGN KEY(person_id) REFERENCES tf_people(id), INDEX(expires_at)
+) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS tf_sessions (
+ token_hash CHAR(64) PRIMARY KEY, principal VARCHAR(30) NOT NULL,
+ person_id BIGINT UNSIGNED NOT NULL, expires_at BIGINT NOT NULL, epoch INT NOT NULL,
+ FOREIGN KEY(person_id) REFERENCES tf_people(id), INDEX(expires_at)
+) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS tf_bookings (
+ id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT, person_id BIGINT UNSIGNED NOT NULL,
+ horario_id INT NOT NULL, fecha DATE NOT NULL,
+ estado ENUM('RESERVED','WAITLIST','CANCELLED') NOT NULL,
+ reservation_id INT NULL, wait_id INT NULL, version INT NOT NULL DEFAULT 1,
+ created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+ UNIQUE(person_id,horario_id,fecha), UNIQUE(reservation_id), UNIQUE(wait_id),
+ FOREIGN KEY(person_id) REFERENCES tf_people(id), INDEX(person_id,fecha,estado)
+) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS tf_requests (
+ principal VARCHAR(80) NOT NULL, request_key VARCHAR(100) NOT NULL,
+ request_hash CHAR(64) NOT NULL, response MEDIUMTEXT NULL,
+ PRIMARY KEY(principal,request_key)
+) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS tf_preferences (
+ person_id BIGINT UNSIGNED PRIMARY KEY, data_json TEXT NOT NULL,
+ FOREIGN KEY(person_id) REFERENCES tf_people(id)
+) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS tf_mutex (id INT PRIMARY KEY) ENGINE=InnoDB;
+INSERT IGNORE INTO tf_mutex VALUES(1);
+CREATE TABLE IF NOT EXISTS tf_identity_audit (
+ id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT, actor VARCHAR(100) NOT NULL,
+ action VARCHAR(50) NOT NULL, person_id BIGINT UNSIGNED NOT NULL,
+ detail_json TEXT NOT NULL, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;

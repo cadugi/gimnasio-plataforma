@@ -1,0 +1,20 @@
+<?php
+require __DIR__.'/bootstrap.php';
+$p=prorateMonth(3990,'2026-10-18');
+eq($p['cents'],1802,'alta 18-oct: 39,90 x 14/31');
+eq($p['days'],14,'alta 18-oct: 14 días');
+eq($p['days_in_month'],31,'octubre 31 días');
+eq($p['from'],'2026-10-18','desde');eq($p['to'],'2026-10-31','hasta');
+eq(prorateMonth(3990,'2026-10-01')['cents'],3990,'día 1 = mes completo');
+$f=prorateMonth(3990,'2027-02-10');
+eq($f['days'],19,'febrero del 10 al 28');eq($f['cents'],2708,'febrero prorrateado');
+eq(prorateMonth(3990,'2026-10-31')['cents'],129,'último día del mes');
+eq(withdrawalDates('2026-10-18'),['last_day'=>'2026-10-31','effective_date'=>'2026-11-01'],'baja 18-oct');
+eq(withdrawalDates('2026-12-05')['effective_date'],'2027-01-01','baja en diciembre pasa de año');
+eq(withdrawalDates('2027-02-03')['last_day'],'2027-02-28','último día de febrero');
+eq(maintenanceMonths('2026-11-01','2027-02-10'),3,'nov, dic, ene');
+eq(maintenanceMonths('2026-11-01','2026-11-20'),0,'vuelve en el mes de efecto');
+eq(maintenanceMonths('2026-11-01','2026-10-25'),0,'vuelve antes del efecto');
+eq(maintenanceMonths('2026-11-01','2027-11-01'),12,'un año');
+eq(MAINTENANCE_FEE_CENTS,500,'recargo 5 €');
+done();

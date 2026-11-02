@@ -1,0 +1,83 @@
+location = /reservas/mobile.html {
+    include fastcgi_params;
+    fastcgi_param SCRIPT_FILENAME /opt/topfitness-web/public/portal.php;
+    fastcgi_param REMOTE_USER $remote_user;
+    fastcgi_param HTTPS on;
+    fastcgi_pass unix:/run/php/topfitness-real.sock;
+}
+location = /reservas/entrar.php {
+    access_log off;
+    error_log /dev/null crit;
+    include fastcgi_params;
+    fastcgi_param SCRIPT_FILENAME /opt/topfitness-web/public/entrar.php;
+    fastcgi_param REMOTE_USER $remote_user;
+    fastcgi_param HTTPS on;
+    fastcgi_pass unix:/run/php/topfitness-real.sock;
+}
+location = /reservas/ {
+    include fastcgi_params;
+    fastcgi_param SCRIPT_FILENAME /opt/topfitness-web/public/portal.php;
+    fastcgi_param REMOTE_USER $remote_user;
+    fastcgi_param HTTPS on;
+    fastcgi_pass unix:/run/php/topfitness-real.sock;
+}
+location = /reservas/index.html {
+    include fastcgi_params;
+    fastcgi_param SCRIPT_FILENAME /opt/topfitness-web/public/portal.php;
+    fastcgi_param REMOTE_USER $remote_user;
+    fastcgi_param HTTPS on;
+    fastcgi_pass unix:/run/php/topfitness-real.sock;
+}
+location = /reservas { return 301 /reservas/; }
+location = /admin { return 301 /admin/; }
+location ~ "^/(reservas|admin)/(conexion|diag_db|dbtest)[.]php$" { return 404; }
+location = /reservas/admin.html { return 404; }
+location = /reservas/avisos-recepcion.html { return 404; }   # solo por /admin/, tras el acceso de recepción
+location = /reservas/sw.js {
+    alias /opt/topfitness-web/public/sw.js;
+    default_type application/javascript;
+    add_header Cache-Control "no-cache" always;
+    add_header Service-Worker-Allowed "/reservas/" always;
+}
+location ~ "^/reservas/(?<tf_public>obtener_horarios_clase|comprobar_disponibilidad|obtener_limite_inscripciones|inscribir_cliente|identidad|mis_reservas|service|movil|avisos|oferta|mis_clases)[.]php$" {
+    # Se retira esta protección de preparación después de validar la copia final.
+    auth_basic_user_file /etc/nginx/topfitness-admin.htpasswd;
+    include fastcgi_params;
+    fastcgi_param SCRIPT_FILENAME /opt/topfitness-web/public/$tf_public.php;
+    fastcgi_param REMOTE_USER $remote_user;
+    fastcgi_pass unix:/run/php/topfitness-real.sock;
+}
+location ~ "^/(reservas|admin)/(?<tf_script>[a-z_]+)[.]php$" {
+    auth_basic "TopFitness administracion";
+    satisfy any;
+    auth_request /_tf_sso;
+    auth_request_set $tf_sso_user $upstream_http_x_tf_user;
+    auth_basic_user_file /etc/nginx/topfitness-admin.htpasswd;
+    include fastcgi_params;
+    fastcgi_param SCRIPT_FILENAME /opt/topfitness-web/public/$tf_script.php;
+    fastcgi_param REMOTE_USER $tf_ru;
+    fastcgi_pass unix:/run/php/topfitness-real.sock;
+}
+location /admin/ {
+    error_page 401 403 = @tf_reservas_access;
+    alias /opt/topfitness-web/public/;
+    index admin.html;
+    auth_basic "TopFitness administracion";
+    satisfy any;
+    auth_request /_tf_sso;
+    auth_request_set $tf_sso_user $upstream_http_x_tf_user;
+    auth_basic_user_file /etc/nginx/topfitness-admin.htpasswd;
+    client_max_body_size 15m;
+}
+location /reservas/ {
+    alias /opt/topfitness-web/public/;
+    index index.html;
+    auth_basic_user_file /etc/nginx/topfitness-admin.htpasswd;
+}
+
+# Evitar páginas de error del servidor al expirar la sesión del administrador.
+location @tf_reservas_access {
+    proxy_pass http://127.0.0.1:8095;
+    rewrite ^ /administracion/acceso-reservas break;
+    proxy_set_header Host $host;
+}

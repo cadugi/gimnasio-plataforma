@@ -1,0 +1,26 @@
+--- a/app/Service.php	2026-10-22 22:19:45.380572288 +0000
++++ b/app/Service.php	2026-10-30 15:26:55.419226266 +0000
+@@ -11,5 +11,5 @@
+ require_once __DIR__.'/MemberExport.php';
+ require_once __DIR__.'/Withdrawals.php';
+ require_once __DIR__.'/History.php';require_once __DIR__.'/Sso.php';
+-require_once __DIR__.'/Members.php';
+-final class Service extends Runtime {use MemberOperations;use MailOperations;use MemberExportOperations;use WithdrawalOperations;use HistoryOperations;use SsoOperations;use RetirementOperations;use InnuxConnectorOperations;use TabletOperations;use InnuxNumberOperations;use ContractOperations;use BillingOperations;use AdminOperations;use MandateOperations;use PhotoOperations;}
++require_once __DIR__.'/Members.php';require_once __DIR__.'/MemberMatch.php';
++final class Service extends Runtime {use MemberOperations;use MemberMatchOperations;use MailOperations;use MemberExportOperations;use WithdrawalOperations;use HistoryOperations;use SsoOperations;use RetirementOperations;use InnuxConnectorOperations;use TabletOperations;use InnuxNumberOperations;use ContractOperations;use BillingOperations;use AdminOperations;use MandateOperations;use PhotoOperations;}
+--- a/public/api.php	2026-10-22 22:19:45.380572288 +0000
++++ b/public/api.php	2026-10-30 15:26:55.419226266 +0000
+@@ -20,6 +20,13 @@
+         ensure($hash!==''&&$given!==''&&hash_equals($hash,hash('sha256',$given)),'No autorizado.',403);
+         jsonResponse(['ok'=>true,'data'=>$s->membersExportSheet()]);
+     }
++    if(($_SERVER['REQUEST_METHOD']??'')==='POST'&&isset($_SERVER['HTTP_X_TF_MATCH'])){
++        $s->limit('match:'.($_SERVER['REMOTE_ADDR']??''),120,60);
++        $s->matchAuthorize((string)$_SERVER['HTTP_X_TF_MATCH']);
++        $raw=file_get_contents('php://input',false,null,0,2049);ensure(strlen($raw)<=2048,'Solicitud demasiado grande.',413);
++        $in=json_decode($raw,true,8,JSON_THROW_ON_ERROR);ensure(is_array($in),'Solicitud no válida.');
++        jsonResponse(['ok'=>true,'data'=>$s->memberMatch($in)]);
++    }
+     startHttp($s);$method=$_SERVER['REQUEST_METHOD']??'GET';$r=[];
+     if($method==='POST'){ensure((int)($_SERVER['CONTENT_LENGTH']??0)<=1200000,'Solicitud demasiado grande.',413);ensure(str_starts_with($_SERVER['CONTENT_TYPE']??'','application/json'),'Se requiere JSON.',415);$raw=file_get_contents('php://input',false,null,0,1200001);ensure(strlen($raw)<=1200000,'Solicitud demasiado grande.',413);$r=json_decode($raw,true,64,JSON_THROW_ON_ERROR);ensure(is_array($r),'Solicitud no válida.');if(($r['action']??'')!=='sso_logout')ensure(hash_equals($_SESSION['csrf'],$_SERVER['HTTP_X_CSRF_TOKEN']??''),'La sesión ha cambiado. Recarga la página.',403);ensure(is_string($r['action']??null),'Operación no válida.');$action=$r['action'];if(array_key_exists('data',$r))ensure(is_array($r['data']),'Formulario no válido.');}
+     else{ensure($method==='GET','Método no permitido.',405);$action=(string)($_GET['action']??'bootstrap');ensure(in_array($action,['bootstrap','ping','document','review_document','preview_pdf','withdrawal_review','withdrawal_preview','withdrawal_document','mandate_document','export_file','export_members','backup_file','enrollment_photo','draft_photo','retirement_file'],true),'Método no permitido.',405);}

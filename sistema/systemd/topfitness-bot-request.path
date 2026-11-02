@@ -1,0 +1,6 @@
+[Unit]
+Description=Vigila peticiones del Centro de control para el bot
+[Path]
+PathExists=/var/lib/topfitness-cuentas/botctl/request.json
+[Install]
+WantedBy=multi-user.target

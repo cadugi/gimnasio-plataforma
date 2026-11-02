@@ -1,0 +1,8 @@
+[Unit]
+Description=Copia de la base de contratos cada 4 horas
+[Timer]
+OnCalendar=*-*-* 00,04,08,12,16,20:20:00 Europe/Madrid
+Persistent=true
+RandomizedDelaySec=120
+[Install]
+WantedBy=timers.target

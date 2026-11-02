@@ -1,0 +1,51 @@
+/* Top Fitness · avisos (móvil). Texto ≥18 px, botones ≥56 px, contraste alto, foco visible. */
+@font-face{font-family:'Barlow';src:url('fonts/Barlow-500.woff2') format('woff2');font-weight:500;font-display:swap}
+@font-face{font-family:'Barlow';src:url('fonts/Barlow-700.woff2') format('woff2');font-weight:700;font-display:swap}
+@font-face{font-family:'Bebas Neue';src:url('fonts/BebasNeue-400.woff2') format('woff2');font-weight:400;font-display:swap}
+:root{color-scheme:dark;--ink:#0a0d0a;--panel:#121712;--line:rgba(255,255,255,.22);--text:#fff;--muted:#d3dbd3;--lime:#22f03a;--lime-ink:#04210a;--orange:#ffb340;--danger:#ff8a80;--body:'Barlow',system-ui,-apple-system,'Segoe UI',sans-serif;--display:'Bebas Neue','Arial Narrow',Impact,sans-serif}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--ink);color:var(--text);font-family:var(--body);font-weight:500;font-size:19px;line-height:1.5;-webkit-tap-highlight-color:transparent}
+button,input{font:inherit}
+:focus-visible{outline:4px solid var(--lime);outline-offset:3px}
+.top-banner{padding:12px max(18px,env(safe-area-inset-right)) 12px max(18px,env(safe-area-inset-left));border-bottom:2px solid var(--lime);background:#0d110d}
+.back{display:inline-flex;align-items:center;min-height:48px;color:var(--text);font-weight:700;text-decoration:none}
+.content{max-width:640px;margin:auto;padding:20px 18px max(40px,env(safe-area-inset-bottom))}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(40px,11vw,54px);line-height:1;letter-spacing:.03em;margin:.2em 0 .4em}
+h2{font-size:26px;line-height:1.2;margin:1.2em 0 .4em}
+h3{font-size:22px;line-height:1.25;margin:0;display:flex;gap:12px;align-items:center}
+p{margin:.5em 0}
+.note{color:var(--muted);font-size:18px}
+label{display:block;font-weight:700;margin:18px 0 6px}
+input[type=text],input[type=tel],input:not([type]){width:100%;min-height:56px;padding:12px 14px;border:2px solid var(--line);border-radius:12px;background:#0d110d;color:var(--text);font-size:20px}
+.check{display:flex;gap:12px;align-items:center;min-height:48px;font-weight:500}
+.check input{width:28px;height:28px;accent-color:var(--lime)}
+button{display:flex;align-items:center;justify-content:center;width:100%;min-height:56px;padding:12px 18px;border-radius:14px;border:2px solid var(--line);background:transparent;color:var(--text);font-size:20px;font-weight:700;cursor:pointer;touch-action:manipulation}
+button.primary{margin-top:16px;border-color:var(--lime);background:var(--lime);color:var(--lime-ink)}
+button.secondary{margin-top:12px}
+button:disabled{opacity:.6;cursor:wait}
+.msg{margin:14px 0;padding:14px 16px;border:2px solid var(--lime);border-radius:12px;background:#0f1a10;font-weight:700}
+.msg.error{border-color:var(--danger);background:#2a1210}
+.chip{display:inline-block;margin:6px 0 14px;padding:10px 16px;border-radius:999px;border:2px solid var(--line);font-weight:700;font-size:20px}
+.chip.ok{border-color:var(--lime);color:var(--lime)}
+.chip.warn{border-color:var(--orange);color:var(--orange)}
+.step{margin:14px 0;padding:16px;border:2px solid var(--line);border-radius:16px;background:var(--panel)}
+.step.current{border-color:var(--lime)}
+.step.done h3{color:var(--lime)}
+.step.later{opacity:.75}
+.n{display:inline-flex;align-items:center;justify-content:center;flex:none;width:38px;height:38px;border-radius:50%;background:var(--lime);color:var(--lime-ink);font-weight:700}
+.step.later .n{background:#3a423a;color:#fff}
+.body{margin-top:10px}
+.guia{display:grid;gap:18px;margin:14px 0;padding:0;list-style:none;counter-reset:g}
+.guia li{counter-increment:g}
+.guia figure{margin:0;text-align:center}
+.guia img{width:min(100%,280px);height:auto;border-radius:14px}
+.guia figcaption{margin-top:8px;font-weight:700;font-size:20px}
+.guia figcaption::before{content:counter(g) ". "}
+ul#lista{padding:0;list-style:none}
+ul#lista li{padding:12px 0;border-bottom:1px solid var(--line)}
+.foot{margin-top:28px}
+@media (prefers-reduced-motion:no-preference){.step{transition:border-color .2s}}
+.big{font-size:26px;font-weight:700;margin:.3em 0}
+.avisos-link{display:flex;align-items:center;justify-content:center;min-height:56px;margin-top:16px;padding:10px 16px;border:2px solid var(--lime);border-radius:14px;color:var(--lime);font-size:20px;font-weight:700;text-decoration:none}

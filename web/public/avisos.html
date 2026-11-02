@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<link rel="icon" href="icons/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/png" sizes="64x64" href="icons/favicon-64.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="manifest" href="manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Top Fitness">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0a0d0a">
+<title>Avisos de mis clases · Top Fitness</title>
+<link rel="stylesheet" href="avisos.css?v=3"><link rel="stylesheet" href="tabbar.css?v=3">
+</head>
+<body class="has-tabbar">
+<header class="top-banner"><img src="img/logo-tf.png" alt="TopFitness" style="height:30px;display:block"></header>
+<main class="content" id="main">
+  <h1>Avisos de mis clases</h1>
+
+  <p class="note"><a href="instrucciones-avisos.html" style="color:#22f03a;font-weight:700;display:inline-flex;align-items:center;min-height:48px">Ver las instrucciones con dibujos (para imprimir)</a></p>
+  <p id="compartida" class="note" hidden>Esta pantalla es compartida. Aquí no se guardan datos ni se pueden activar avisos. Hazlo desde tu móvil.</p>
+
+  <p id="msg" class="msg" role="status" aria-live="polite" hidden></p>
+  <p id="err" class="msg error" role="alert" hidden></p>
+
+  <!-- Primer acceso: quién eres -->
+  <section id="s-ident" hidden aria-labelledby="t-ident">
+    <h2 id="t-ident">¿Quién eres?</h2>
+    <p>Escribe tu nombre y tu teléfono. Es para enviarte los avisos de tus clases.</p>
+    <form id="f-ident" novalidate>
+      <label for="nombre">Tu nombre y apellidos</label>
+      <input id="nombre" name="nombre" autocomplete="name" autocapitalize="words" required>
+      <label for="telefono">Tu teléfono móvil</label>
+      <input id="telefono" name="telefono" type="tel" inputmode="tel" autocomplete="tel" required>
+      <label class="check"><input type="checkbox" id="recordar" checked> <span>Recordar mis datos en este móvil</span></label>
+      <button type="submit" class="primary" id="b-ident">Continuar</button>
+    </form>
+  </section>
+
+  <!-- Asistente -->
+  <section id="s-wiz" hidden aria-labelledby="t-wiz">
+    <h2 id="t-wiz">Hola, <span id="quien"></span></h2>
+    <p id="chip" class="chip" role="status"></p>
+
+    <article class="step" id="p1" aria-labelledby="h1">
+      <h3 id="h1"><span class="n" aria-hidden="true">1</span> Añadir Top Fitness al móvil</h3>
+      <div class="body" id="b1"></div>
+    </article>
+    <article class="step" id="p2" aria-labelledby="h2">
+      <h3 id="h2"><span class="n" aria-hidden="true">2</span> Activar avisos de mis clases</h3>
+      <div class="body" id="b2"></div>
+    </article>
+    <article class="step" id="p3" aria-labelledby="h3">
+      <h3 id="h3"><span class="n" aria-hidden="true">3</span> Enviar aviso de prueba</h3>
+      <div class="body" id="b3"></div>
+    </article>
+
+    <section id="mis" hidden aria-labelledby="t-mis"><h2 id="t-mis">Mis últimos avisos</h2><ul id="lista"></ul>
+      <p class="note">«Enviado» significa que el aviso salió hacia tu móvil. No podemos saber si lo has leído.</p></section>
+
+    <div class="foot">
+      <button type="button" class="secondary" id="b-desact" hidden>Desactivar avisos</button>
+      <button type="button" class="secondary" id="b-salir">Cerrar sesión</button>
+      <p class="note">Al cerrar sesión este móvil deja de recibir avisos y se olvidan tus datos aquí.</p>
+    </div>
+  </section>
+</main>
+<nav class="tabbar" aria-label="Menú principal">
+<a href="./"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span>Reservar</span></a>
+<a href="mis-clases.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l4 4 10-10"/><rect x="3" y="3" width="18" height="18" rx="3"/></svg><span>Mis clases</span></a>
+<a href="avisos.html" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 17V11a6 6 0 0112 0v6l2 2H4z"/><path d="M10 21h4"/></svg><span>Avisos</span></a>
+</nav>
+<script src="avisos.js?v=2" defer></script>
+</body></html>

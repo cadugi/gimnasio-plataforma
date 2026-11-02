@@ -1,0 +1,19 @@
+[Unit]
+Description=Top Fitness cuentas remotas
+After=network.target
+[Service]
+User=topfitness-cuentas
+Group=topfitness-cuentas
+ExecStart=/opt/topfitness-cuentas/venv/bin/python /opt/topfitness-cuentas/app.py
+Restart=on-failure
+RestartSec=3
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+ReadWritePaths=/var/lib/topfitness-cuentas
+MemoryMax=256M
+TasksMax=64
+UMask=0077
+[Install]
+WantedBy=multi-user.target

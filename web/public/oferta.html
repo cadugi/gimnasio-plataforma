@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<link rel="icon" href="icons/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0a0d0a">
+<meta name="referrer" content="no-referrer">
+<title>Plaza libre · Top Fitness</title>
+<link rel="stylesheet" href="avisos.css?v=1">
+</head>
+<body>
+<header class="top-banner"><a href="./" class="back">&larr; Ir a las clases</a></header>
+<main class="content" id="main">
+  <h1>Plaza libre</h1>
+  <p id="err" class="msg error" role="alert" hidden></p>
+  <p id="msg" class="msg" role="status" aria-live="polite" hidden></p>
+
+  <section id="oferta" hidden aria-labelledby="t-of">
+    <h2 id="t-of"><span id="clase"></span></h2>
+    <p class="big" id="cuando"></p>
+    <p class="note" id="limite"></p>
+    <p class="note">Abrir este aviso no te apunta. Tienes que pulsar el botón.</p>
+    <button type="button" class="primary" id="b-ok">Aceptar plaza</button>
+    <button type="button" class="secondary" id="b-no">No quiero la plaza</button>
+  </section>
+
+  <section id="seguro" hidden aria-labelledby="t-seg">
+    <h2 id="t-seg">¿Seguro que no la quieres?</h2>
+    <p>Saldrás de la lista de espera de esta clase. Si cambias de idea, tendrás que apuntarte otra vez al final de la lista.</p>
+    <button type="button" class="primary" id="b-si">Sí, no quiero la plaza</button>
+    <button type="button" class="secondary" id="b-volver">No, volver</button>
+  </section>
+
+  <section id="fin" hidden><a class="avisos-link" href="./">Ir a las clases</a></section>
+</main>
+<script src="oferta.js?v=2" defer></script>
+</body></html>

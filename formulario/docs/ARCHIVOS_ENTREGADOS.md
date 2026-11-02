@@ -1,0 +1,78 @@
+# Archivos del módulo
+
+Se excluyen datos privados, claves, bases y sesiones. El PDF de ejemplo contiene solo datos inventados.
+
+- .env.example
+- .gitignore
+- Configurar acceso.cmd
+- Detener aplicación.cmd
+- INFORME_IMPLEMENTACION.md
+- Iniciar aplicación.cmd
+- README.md
+- app/Admin.php
+- app/BankFile.php
+- app/Billing.php
+- app/Contracts.php
+- app/Core.php
+- app/Http.php
+- app/InnuxAdapter.php
+- app/Mandates.php
+- app/PaperReference.php
+- app/Pdf.php
+- app/Review.php
+- app/Service.php
+- app/Validation.php
+- deploy/apache-vhost.example.conf
+- docs/ADAPTACION_IMPRESO_REAL.md
+- docs/ARCHIVOS_ENTREGADOS.md
+- docs/ARQUITECTURA.md
+- docs/AUDITORIA_CAJA_INNUX.md
+- docs/CONTRATO_EJEMPLO.pdf
+- docs/INTEGRIDAD_CAJA.json
+- docs/OPERACION_Y_DESPLIEGUE.md
+- docs/RESULTADOS_NAVEGADOR.json
+- docs/RESULTADOS_PRUEBAS.json
+- docs/VALIDACION_PDF.json
+- docs/VERIFICACION_ACCESO_DIRECTO.json
+- docs/VERIFICACION_CAJA_AISLADA.json
+- docs/VISTAS_FORMULARIO.html
+- docs/VISTA_ADMINISTRACION.png
+- docs/VISTA_CONDICIONES_TABLET.png
+- docs/VISTA_DATOS_TABLET.png
+- docs/VISTA_FIRMA_TABLET.png
+- docs/VISTA_FORMULARIO_MOVIL.png
+- docs/VISTA_OTRO_TITULAR_TABLET.png
+- docs/VISTA_PAGO_TABLET.png
+- docs/VISTA_PDF_A4.png
+- docs/VISTA_RECEPCION_TABLET.png
+- docs/VISTA_TARIFAS_TABLET.png
+- docs/VISTA_TODOS_APARTADOS.png
+- fixtures/demo_tariffs.json
+- fixtures/paper_reference.json
+- migrations/001_initial.sql
+- migrations/002_integrity.sql
+- public/api.php
+- public/assets/admin.js
+- public/assets/app.css
+- public/assets/app.js
+- public/assets/logo.jpg
+- public/assets/review.css
+- public/index.php
+- public/router.php
+- scripts/apply_paper_reference.php
+- scripts/cleanup.php
+- scripts/configurar_acceso.ps1
+- scripts/configurar_acceso.py
+- scripts/create_shortcut.ps1
+- scripts/open_demo.py
+- scripts/package.py
+- scripts/reset_admin.php
+- scripts/restore_backup.php
+- scripts/runtime.py
+- scripts/seed_demo.php
+- scripts/setup.php
+- tests/browser.py
+- tests/concurrent.php
+- tests/domain.php
+- tests/render_pdf.ps1
+- tests/run.py

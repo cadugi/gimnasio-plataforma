@@ -1,0 +1,30 @@
+/* Panel de administración · vista móvil (≤ 700 px): clases visibles sin scroll interno y sin desbordes */
+@media (max-width:700px){
+  html,body{overflow-x:hidden}
+  .top-banner{padding:10px 14px;gap:10px}
+  .top-banner img{height:30px}
+  .banner-text{font-size:20px;letter-spacing:.05em;min-width:0;text-align:right;flex:1}
+  .menu-superior{padding:8px 10px;gap:8px}
+  .tab-button{min-height:44px;padding:0 16px;font-size:16px}
+  main,.tab-content{padding:12px 10px}
+  .calendar-container{padding:12px;gap:12px;margin-bottom:12px}
+  .how-to{display:none}
+  .cal-field{gap:6px}
+  .cal-label{font-size:13px;text-transform:uppercase;letter-spacing:.08em}
+  .datepick{flex-wrap:nowrap;gap:6px}
+  .dp-nav{width:46px;height:46px;flex:0 0 46px}
+  .dp-current{min-height:46px;font-size:17px;padding:0 8px;line-height:1.1}
+  .dp-today{min-height:46px;padding:0 14px;font-size:16px;flex:0 0 auto}
+  .btn-multi{min-height:46px;font-size:16px}
+  .bottom-container{gap:12px}
+  .left-side{max-height:none;overflow:visible;padding:10px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .left-side:empty::before{grid-column:1/-1}
+  .left-side button{margin:0!important;padding:10px 12px;font-size:15px;line-height:1.25;display:flex;flex-direction:column;gap:2px;min-height:68px}
+  .left-side button:last-child{margin-bottom:0!important}
+  .left-side button b{font-size:22px}
+  .right-side{padding:10px;overflow-x:auto}
+  .right-side td,.right-side th{padding:9px 8px;font-size:16px}
+  .right-side td button,.right-side td .btn{padding:0 10px;min-height:38px;font-size:13px;white-space:nowrap}
+  .right-side table{min-width:0}
+  .tag-cancelada{margin-left:0;margin-top:2px;font-size:12px;align-self:flex-start}
+}

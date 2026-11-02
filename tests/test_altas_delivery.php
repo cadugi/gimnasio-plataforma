@@ -1,0 +1,20 @@
+<?php
+declare(strict_types=1);
+require dirname(__DIR__).'/formulario/app/Service.php';
+$root=dirname(__DIR__).'/formulario';$tmp=sys_get_temp_dir().'/tf-delivery-'.bin2hex(random_bytes(8));mkdir($tmp,0700);
+file_put_contents($tmp.'/keys',json_encode(array_fill_keys(['encryption','audit','lookup','backup'],base64_encode(random_bytes(32)))));file_put_contents($tmp.'/sso.key',str_repeat('x',40));
+$s=new Service($root,['database'=>$tmp.'/db.sqlite','key_file'=>$tmp.'/keys','environment'=>'test','sso_key_file'=>$tmp.'/sso.key']);
+foreach(glob($root.'/migrations/*.sql') as $f)$s->db->exec(file_get_contents($f));$passed=0;
+$ok=function($value,$message)use(&$passed){if(!$value)throw new RuntimeException($message);$passed++;};
+$bad=function(callable $fn)use($ok){try{$fn();}catch(AppError){$ok(true,'rejected');return;}$ok(false,'Se aceptó una operación no autorizada');};
+$ok(!$s->tabletConnectionTest('missing'),'Bootstrap puede consultar el permiso de prueba sin modificarlo');
+$now=time();$p=['mod'=>'altas','op'=>'login','sub'=>'alicia','role'=>'admin','iat'=>$now,'exp'=>$now+60,'jti'=>'one'];$u=$s->ssoLogin($s->ssoVerify(Service::ssoSign(str_repeat('x',40),$p)));
+$_SESSION=['mode'=>'admin','user_id'=>$u['id'],'epoch'=>(int)$u['epoch']];$ok($s->staff()['username']==='cc.alicia','Identidad SSO');
+$logout=$p;$logout['op']='logout';$logout['jti']='two';$ticket=Service::ssoSign(str_repeat('x',40),$logout);$bad(fn()=>$s->ssoVerify($ticket));
+$s->ssoLogout($s->ssoVerify($ticket,null,'logout'));$bad(fn()=>$s->staff());$bad(fn()=>$s->ssoLogout($logout));$ok($s->verifyAudit(),'Auditoría íntegra');
+$ok($s->actorDisplay($u['id'])==='cc.alicia','Nombre legible');$ok($s->actionDisplay('LOGIN_SSO')==='Acceso desde el Centro','Acción legible');
+$ok(!$s->bankingStatus('fitness')['ready'],'No permitir domiciliación sin configuración');
+$id=uuid();$s->sql("INSERT INTO legal_versions(id,brand,version,contract_text,privacy_text,bank_text,sepa_text,approved,approval_reference,created_at,active) VALUES(?,?,?,?,?,?,?,?,?,?,1)",[$id,'fitness','1','Condiciones','Privacidad','Pendiente de cotejo con el original','PENDIENTE: revisión',1,'Responsable',instant()]);
+$s->sql("INSERT INTO settings VALUES('creditor',?)",[jencode(['name'=>'Centro ficticio','id'=>'ES00TEST'])]);$ok(!$s->bankingStatus('fitness')['ready'],'Textos pendientes bloquean banco aunque figuren aprobados');
+$s->sql('UPDATE legal_versions SET active=0 WHERE id=?',[$id]);$s->sql("INSERT INTO legal_versions(id,brand,version,contract_text,privacy_text,bank_text,sepa_text,approved,approval_reference,created_at,active) VALUES(?,?,?,?,?,?,?,?,?,?,1)",[uuid(),'fitness','2','Condiciones','Privacidad','Texto revisado del acreedor','Mandato autorizado por el titular',1,'Responsable',instant()]);$ok($s->bankingStatus('fitness')['ready'],'Datos y textos completos permiten banco');
+echo "Altas delivery: $passed passed\n";unset($s);foreach(glob($tmp.'/*') as $f)unlink($f);rmdir($tmp);

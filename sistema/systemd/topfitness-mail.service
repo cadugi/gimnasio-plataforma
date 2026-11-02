@@ -1,0 +1,28 @@
+[Unit]
+Description=Top Fitness altas - envío de correos con el contrato
+After=network-online.target topfitness-altas.service
+Wants=network-online.target
+# No arranca hasta que exista la contraseña SMTP cifrada (scripts/mail_setup.sh).
+ConditionPathExists=/etc/credstore.encrypted/topfitness-mail.smtp
+ConditionPathExists=/etc/topfitness-altas/mail.json
+
+[Service]
+Type=oneshot
+User=topfitness-altas
+Group=www-data
+SupplementaryGroups=topfitness-altas
+LoadCredentialEncrypted=keys:/etc/credstore.encrypted/topfitness-altas.keys
+LoadCredentialEncrypted=smtp_password:/etc/credstore.encrypted/topfitness-mail.smtp
+Environment=TF_CONFIG_FILE=/etc/topfitness-altas/config.json
+Environment=TF_KEY_FILE=%d/keys
+Environment=TF_SMTP_PASSWORD_FILE=%d/smtp_password
+ExecStart=/usr/bin/php -d extension=/opt/topfitness-formulario/runtime/php-sqlite/usr/lib/php/20230831/pdo_sqlite.so /opt/topfitness-formulario/current/scripts/mail_worker.php
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/topfitness-altas
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+MemoryMax=256M
+TimeoutStartSec=120

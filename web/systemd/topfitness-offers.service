@@ -1,0 +1,22 @@
+[Unit]
+Description=Top Fitness worker de ofertas de lista de espera
+After=mariadb.service
+Wants=mariadb.service
+
+[Service]
+User=www-data
+Group=www-data
+EnvironmentFile=/etc/topfitness-web/notify.env
+ExecStart=/usr/bin/php /opt/topfitness-web/cli/offers_worker.php
+Restart=always
+RestartSec=3
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+PrivateDevices=yes
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+LockPersonality=yes
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,4 @@
+[
+  {"name":"Fitness mensual","brand":"fitness","monthly_cents":3990,"enrollment_cents":2490,"max_discount":15,"conditions":"Tarifa de demostración. Condiciones y vigencia pendientes de aprobación del centro."},
+  {"name":"Top Fighters","brand":"fighters","monthly_cents":4990,"enrollment_cents":2490,"max_discount":10,"conditions":"Ejemplo configurable para actividades de Top Fighters. No es una oferta comercial vigente."}
+]

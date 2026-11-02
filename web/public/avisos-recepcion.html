@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<link rel="icon" href="icons/favicon.ico" sizes="32x32">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Avisos y ofertas · Recepción · Top Fitness</title>
+<link rel="stylesheet" href="avisos.css?v=2">
+<style>.content{max-width:1000px}table{width:100%;border-collapse:collapse;margin:8px 0 20px}th,td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{color:var(--muted);font-size:18px}td button{width:auto;min-height:48px;margin:0;padding:8px 14px;font-size:18px}.chips{display:flex;flex-wrap:wrap;gap:10px}.empty{color:var(--muted)}.warn{color:var(--orange)}.bad{color:var(--danger)}details{margin:16px 0}summary{min-height:48px;display:flex;align-items:center;font-weight:700;cursor:pointer}form.inline label{margin-top:12px}</style>
+</head>
+<body>
+<header class="top-banner"><a href="admin.html" class="back">&larr; Volver a la administración</a></header>
+<main class="content">
+  <h1>Avisos y ofertas</h1>
+  <p id="err" class="msg error" role="alert" hidden></p>
+  <p id="msg" class="msg" role="status" aria-live="polite" hidden></p>
+
+  <h2>Estado</h2>
+  <div class="chips" id="salud" aria-live="polite"></div>
+
+  <h2>Ofertas de plaza pendientes</h2>
+  <p class="note">Si la persona llama por teléfono y quiere la plaza, puedes confirmarla aquí. Se aplican el mismo plazo y el mismo aforo, y queda registrado quién lo hizo.</p>
+  <div id="ofertas"></div>
+
+  <h2>Incidencias (últimos 7 días)</h2>
+  <div id="incidencias"></div>
+
+  <h2>Móviles asociados</h2>
+  <p class="note">Quitar un móvil deja de enviarle avisos. La persona puede volver a asociarlo desde su móvil.</p>
+  <div id="devices"></div>
+
+  <details><summary>Asociar a un socio que solo está en Innux</summary>
+    <p class="note">Busca al socio en Innux, copia su referencia y escribe aquí sus datos. No se crea ni se modifica nada en Innux.</p>
+    <form class="inline" id="f-innux" novalidate>
+      <label for="ref">Referencia de Innux (por ejemplo INNUX:1234)</label><input id="ref" required>
+      <label for="nom">Nombre y apellidos</label><input id="nom" required>
+      <label for="tel">Teléfono móvil</label><input id="tel" type="tel" required>
+      <button type="submit" class="primary">Asociar socio</button>
+    </form>
+  </details>
+</main>
+<script src="avisos-recepcion.js?v=1" defer></script>
+</body></html>

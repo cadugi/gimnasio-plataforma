@@ -1,0 +1,28 @@
+/* Reservas móvil · versión clara: letra grande, pasos numerados y botones cómodos. Se carga DESPUÉS de mobile.css. */
+body{font-size:18px}
+.top-banner span{font-size:18px;font-weight:700;color:var(--text)}
+.top-banner img{height:34px}
+h1{font-size:clamp(44px,13vw,60px)}
+.pasos{display:grid;gap:10px;margin:14px 0 4px;padding:0;list-style:none}
+.pasos li{display:flex;align-items:center;gap:14px;min-height:56px;padding:8px 14px;border:2px solid var(--line);border-radius:14px;background:var(--panel);font-size:20px;font-weight:700}
+.pasos b{display:inline-flex;align-items:center;justify-content:center;flex:none;width:36px;height:36px;border-radius:50%;background:var(--lime);color:var(--lime-ink);font-size:20px}
+.schedule-container summary{min-height:64px;font-size:22px}
+.section-title{font-size:26px}
+.hint,.footnote,.schedule-poster{font-size:18px}
+.card .name{font-size:22px}
+button,.sheet label,.sheet input,.sheet select{font-size:20px}
+.sheet input,.sheet select{min-height:56px}
+.primary{min-height:60px;font-size:22px}
+/* selector de día más grande */
+.schedule-days{gap:4px}
+.schedule-days button{min-height:76px}
+.schedule-days span{font-size:18px;font-weight:700}
+.schedule-days strong{font-size:28px}
+#schedule-date{font-size:20px;color:var(--text)}
+/* filas de clases: hora grande, botón claro y cómodo */
+.session-hour{font-size:20px;font-weight:700;color:var(--text)}
+.session-row strong{font-size:30px}
+.session-row button{min-width:120px;min-height:56px;font-size:20px;border-radius:14px}
+.session-row button:disabled{font-size:18px}
+.agenda-body .hint{font-size:18px;color:var(--muted)}
+.schedule-poster{display:inline-flex;align-items:center;min-height:52px;font-size:18px;font-weight:700}

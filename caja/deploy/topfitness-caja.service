@@ -1,0 +1,34 @@
+[Unit]
+Description=Top Fitness caja web (Python, SQLite propia)
+After=network.target
+
+[Service]
+Type=simple
+User=topfitness-caja
+Group=topfitness-caja
+WorkingDirectory=/opt/topfitness-caja/current
+Environment=CAJA_DATA=/var/lib/topfitness-caja
+Environment=CAJA_BACKUP_DIR=/var/backups/topfitness-caja
+Environment=CAJA_EXPORTS=/var/lib/topfitness-caja/exports
+Environment=CAJA_SOCKET=/run/topfitness-caja/app.sock
+Environment=CAJA_ORIGIN=https://whatsapp.gimnasio.example
+Environment=CAJA_PREFIX=/alta/caja
+Environment=PYTHONDONTWRITEBYTECODE=1
+ExecStart=/usr/bin/python3 -m caja.server
+Restart=on-failure
+RestartSec=3
+RuntimeDirectory=topfitness-caja
+RuntimeDirectoryMode=0750
+UMask=0007
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+PrivateNetwork=true
+RestrictAddressFamilies=AF_UNIX
+ReadWritePaths=/var/lib/topfitness-caja /var/backups/topfitness-caja
+MemoryMax=384M
+TasksMax=64
+
+[Install]
+WantedBy=multi-user.target

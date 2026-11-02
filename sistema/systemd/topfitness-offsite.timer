@@ -1,0 +1,8 @@
+[Unit]
+Description=Top Fitness - copia externa cifrada (diaria)
+[Timer]
+OnCalendar=*-*-* 04:10:00
+RandomizedDelaySec=15min
+Persistent=true
+[Install]
+WantedBy=timers.target

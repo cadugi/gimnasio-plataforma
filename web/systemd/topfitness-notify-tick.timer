@@ -1,0 +1,10 @@
+[Unit]
+Description=Programar recordatorios cada minuto
+
+[Timer]
+OnBootSec=1min
+OnUnitActiveSec=1min
+AccuracySec=5s
+
+[Install]
+WantedBy=timers.target

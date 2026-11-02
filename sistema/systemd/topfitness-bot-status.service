@@ -1,0 +1,7 @@
+[Unit]
+Description=Estado del bot de WhatsApp para el Centro de control
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/topfitness-bot-admin status
+NoNewPrivileges=true
+PrivateTmp=true

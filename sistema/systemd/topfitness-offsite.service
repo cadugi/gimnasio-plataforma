@@ -1,0 +1,8 @@
+# Copia externa cifrada. NO se habilita hasta configurar /etc/topfitness-offsite/ (ver docs/COPIAS_Y_RECUPERACION.md).
+[Unit]
+Description=Top Fitness - copia externa cifrada
+ConditionPathExists=/etc/topfitness-offsite/offsite.conf
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/topfitness-offsite-backup
+Nice=10

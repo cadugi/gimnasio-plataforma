@@ -1,0 +1,9 @@
+[Unit]
+Description=Vigilancia de Top Fitness
+After=network-online.target
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/topfitness-healthcheck
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true

@@ -1,0 +1,449 @@
+{
+  "source": "Live UI Automation metadata; no field values read",
+  "page": "frmPaginaCliente",
+  "embedded_in_main": true,
+  "creation_mode_verified": false,
+  "save_executed": false,
+  "controls": [
+    {
+      "type": "Window",
+      "automation_id": "frmPaginaCliente",
+      "class_name": "WindowsForms10.Window.8.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Tab",
+      "automation_id": "tabControl1",
+      "class_name": "WindowsForms10.SysTabControl32.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Pane",
+      "automation_id": "tabDados",
+      "class_name": "WindowsForms10.Window.8.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "TabItem",
+      "automation_id": "",
+      "class_name": ""
+    },
+    {
+      "type": "TabItem",
+      "automation_id": "",
+      "class_name": ""
+    },
+    {
+      "type": "Pane",
+      "automation_id": "tableLayoutPanel6",
+      "class_name": "WindowsForms10.Window.8.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Button",
+      "automation_id": "btnGuardar",
+      "class_name": "WindowsForms10.BUTTON.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Pane",
+      "automation_id": "aExpando1",
+      "class_name": "WindowsForms10.Window.8.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Pane",
+      "automation_id": "AExpandoGerais",
+      "class_name": "WindowsForms10.Window.8.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Tab",
+      "automation_id": "tabControl2",
+      "class_name": "WindowsForms10.SysTabControl32.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Pane",
+      "automation_id": "pictureFotografia",
+      "class_name": "WindowsForms10.Window.8.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Text",
+      "automation_id": "label2",
+      "class_name": "WindowsForms10.STATIC.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Text",
+      "automation_id": "label3",
+      "class_name": "WindowsForms10.STATIC.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Text",
+      "automation_id": "label4",
+      "class_name": "WindowsForms10.STATIC.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Text",
+      "automation_id": "label5",
+      "class_name": "WindowsForms10.STATIC.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Text",
+      "automation_id": "label6",
+      "class_name": "WindowsForms10.STATIC.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Text",
+      "automation_id": "label7",
+      "class_name": "WindowsForms10.STATIC.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Text",
+      "automation_id": "label8",
+      "class_name": "WindowsForms10.STATIC.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Text",
+      "automation_id": "label9",
+      "class_name": "WindowsForms10.STATIC.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Text",
+      "automation_id": "label10",
+      "class_name": "WindowsForms10.STATIC.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Text",
+      "automation_id": "label11",
+      "class_name": "WindowsForms10.STATIC.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Text",
+      "automation_id": "label12",
+      "class_name": "WindowsForms10.STATIC.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Text",
+      "automation_id": "label13",
+      "class_name": "WindowsForms10.STATIC.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Edit",
+      "automation_id": "edtNome",
+      "class_name": "WindowsForms10.EDIT.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Edit",
+      "automation_id": "edtNumero",
+      "class_name": "WindowsForms10.EDIT.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Edit",
+      "automation_id": "edtNIF",
+      "class_name": "WindowsForms10.EDIT.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Edit",
+      "automation_id": "edtMorada",
+      "class_name": "WindowsForms10.EDIT.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Edit",
+      "automation_id": "edtMorada2",
+      "class_name": "WindowsForms10.EDIT.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Edit",
+      "automation_id": "edtPais",
+      "class_name": "WindowsForms10.EDIT.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Edit",
+      "automation_id": "edtCodigoPostal",
+      "class_name": "WindowsForms10.EDIT.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Edit",
+      "automation_id": "edtTelemovel",
+      "class_name": "WindowsForms10.EDIT.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Edit",
+      "automation_id": "edtLocalidade",
+      "class_name": "WindowsForms10.EDIT.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Edit",
+      "automation_id": "edtTelCasa",
+      "class_name": "WindowsForms10.EDIT.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Edit",
+      "automation_id": "edtEmail",
+      "class_name": "WindowsForms10.EDIT.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Edit",
+      "automation_id": "edtTelTrabalho",
+      "class_name": "WindowsForms10.EDIT.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Text",
+      "automation_id": "label14",
+      "class_name": "WindowsForms10.STATIC.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Pane",
+      "automation_id": "dateNascimento",
+      "class_name": "WindowsForms10.SysDateTimePick32.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Pane",
+      "automation_id": "dateAdmiss\u00e3o",
+      "class_name": "WindowsForms10.SysDateTimePick32.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Text",
+      "automation_id": "label15",
+      "class_name": "WindowsForms10.STATIC.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Edit",
+      "automation_id": "edtIDTerminal",
+      "class_name": "WindowsForms10.EDIT.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "ComboBox",
+      "automation_id": "cmbSexo",
+      "class_name": "WindowsForms10.COMBOBOX.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Button",
+      "automation_id": "btnProcurar",
+      "class_name": "WindowsForms10.BUTTON.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Button",
+      "automation_id": "btnLimparImg",
+      "class_name": "WindowsForms10.BUTTON.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Button",
+      "automation_id": "btnLimparPwd",
+      "class_name": "WindowsForms10.BUTTON.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "CheckBox",
+      "automation_id": "chkBioRegistada",
+      "class_name": "WindowsForms10.BUTTON.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "CheckBox",
+      "automation_id": "chkNaoSocio",
+      "class_name": "WindowsForms10.BUTTON.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "CheckBox",
+      "automation_id": "chkValidarSemBio",
+      "class_name": "WindowsForms10.BUTTON.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Button",
+      "automation_id": "btnApagarBio",
+      "class_name": "WindowsForms10.BUTTON.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "CheckBox",
+      "automation_id": "chkAtivo",
+      "class_name": "WindowsForms10.BUTTON.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Text",
+      "automation_id": "label16",
+      "class_name": "WindowsForms10.STATIC.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "ComboBox",
+      "automation_id": "cmbGrupo",
+      "class_name": "WindowsForms10.COMBOBOX.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Text",
+      "automation_id": "label47",
+      "class_name": "WindowsForms10.STATIC.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Edit",
+      "automation_id": "edtFax",
+      "class_name": "WindowsForms10.EDIT.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Text",
+      "automation_id": "lblInfo",
+      "class_name": "WindowsForms10.STATIC.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Text",
+      "automation_id": "label1",
+      "class_name": "WindowsForms10.STATIC.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Pane",
+      "automation_id": "tabOutrosDados",
+      "class_name": "WindowsForms10.Window.8.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "TabItem",
+      "automation_id": "",
+      "class_name": ""
+    },
+    {
+      "type": "TabItem",
+      "automation_id": "",
+      "class_name": ""
+    },
+    {
+      "type": "TabItem",
+      "automation_id": "",
+      "class_name": ""
+    },
+    {
+      "type": "TabItem",
+      "automation_id": "",
+      "class_name": ""
+    },
+    {
+      "type": "TabItem",
+      "automation_id": "",
+      "class_name": ""
+    },
+    {
+      "type": "TabItem",
+      "automation_id": "",
+      "class_name": ""
+    },
+    {
+      "type": "Button",
+      "automation_id": "",
+      "class_name": ""
+    },
+    {
+      "type": "Button",
+      "automation_id": "",
+      "class_name": ""
+    },
+    {
+      "type": "Edit",
+      "automation_id": "edtNotas",
+      "class_name": "WindowsForms10.EDIT.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Text",
+      "automation_id": "label23",
+      "class_name": "WindowsForms10.STATIC.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "ComboBox",
+      "automation_id": "numDesconto",
+      "class_name": "WindowsForms10.Window.8.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "ComboBox",
+      "automation_id": "numSaldo",
+      "class_name": "WindowsForms10.Window.8.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "ComboBox",
+      "automation_id": "cmbAdmissao",
+      "class_name": "WindowsForms10.COMBOBOX.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "ComboBox",
+      "automation_id": "cmbEstCivil",
+      "class_name": "WindowsForms10.COMBOBOX.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Edit",
+      "automation_id": "edtWebsite",
+      "class_name": "WindowsForms10.EDIT.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Edit",
+      "automation_id": "edtProfissao",
+      "class_name": "WindowsForms10.EDIT.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Text",
+      "automation_id": "label22",
+      "class_name": "WindowsForms10.STATIC.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Text",
+      "automation_id": "label21",
+      "class_name": "WindowsForms10.STATIC.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Text",
+      "automation_id": "label20",
+      "class_name": "WindowsForms10.STATIC.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Text",
+      "automation_id": "label19",
+      "class_name": "WindowsForms10.STATIC.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Text",
+      "automation_id": "label18",
+      "class_name": "WindowsForms10.STATIC.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Text",
+      "automation_id": "label17",
+      "class_name": "WindowsForms10.STATIC.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Spinner",
+      "automation_id": "7539344",
+      "class_name": "WindowsForms10.Window.8.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Edit",
+      "automation_id": "6556670",
+      "class_name": "WindowsForms10.EDIT.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Spinner",
+      "automation_id": "7082768",
+      "class_name": "WindowsForms10.Window.8.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Edit",
+      "automation_id": "4723486",
+      "class_name": "WindowsForms10.EDIT.app.0.3e799b_r8_ad1"
+    },
+    {
+      "type": "Button",
+      "automation_id": "",
+      "class_name": ""
+    },
+    {
+      "type": "Button",
+      "automation_id": "",
+      "class_name": ""
+    },
+    {
+      "type": "Button",
+      "automation_id": "",
+      "class_name": ""
+    },
+    {
+      "type": "Button",
+      "automation_id": "",
+      "class_name": ""
+    },
+    {
+      "type": "Button",
+      "automation_id": "",
+      "class_name": ""
+    },
+    {
+      "type": "Button",
+      "automation_id": "",
+      "class_name": ""
+    }
+  ]
+}

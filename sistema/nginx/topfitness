@@ -1,0 +1,123 @@
+server {
+    server_name whatsapp.gimnasio.example;
+    include /etc/nginx/snippets/topfitness-web.conf;
+    include /etc/nginx/snippets/topfitness-caja.conf;
+    access_log off;
+    error_log /var/log/nginx/topfitness-error.log crit;
+    client_max_body_size 64k;
+    client_body_timeout 10s;
+    location = /alta { return 301 /alta/; }
+    location = /alta/admin { return 301 /alta/admin/; }
+    location = /alta/ {
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME /opt/topfitness-formulario/releases/recovery-6326-20261018T1130/public/index.php;
+        fastcgi_param TF_PORTAL client;
+        fastcgi_param HTTPS on;
+        fastcgi_param HTTP_PROXY "";
+        fastcgi_pass unix:/run/topfitness-altas/php.sock;
+        fastcgi_read_timeout 30s;
+        client_max_body_size 1200000;
+    }
+    location = /alta/index.php {
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME /opt/topfitness-formulario/releases/recovery-6326-20261018T1130/public/index.php;
+        fastcgi_param TF_PORTAL client;
+        fastcgi_param HTTPS on;
+        fastcgi_param HTTP_PROXY "";
+        fastcgi_pass unix:/run/topfitness-altas/php.sock;
+        fastcgi_read_timeout 30s;
+        client_max_body_size 1200000;
+    }
+    location = /alta/api.php {
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME /opt/topfitness-formulario/releases/recovery-6326-20261018T1130/public/api.php;
+        fastcgi_param TF_PORTAL client;
+        fastcgi_param HTTPS on;
+        fastcgi_param HTTP_PROXY "";
+        fastcgi_pass unix:/run/topfitness-altas/php.sock;
+        fastcgi_read_timeout 30s;
+        client_max_body_size 1200000;
+    }
+    location = /alta/admin/ {
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME /opt/topfitness-formulario/releases/recovery-6326-20261018T1130/public/index.php;
+        fastcgi_param TF_PORTAL admin;
+        fastcgi_param HTTPS on;
+        fastcgi_param HTTP_PROXY "";
+        fastcgi_pass unix:/run/topfitness-altas/php.sock;
+        fastcgi_read_timeout 30s;
+        client_max_body_size 1200000;
+    }
+    location = /alta/admin/index.php {
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME /opt/topfitness-formulario/releases/recovery-6326-20261018T1130/public/index.php;
+        fastcgi_param TF_PORTAL admin;
+        fastcgi_param HTTPS on;
+        fastcgi_param HTTP_PROXY "";
+        fastcgi_pass unix:/run/topfitness-altas/php.sock;
+        fastcgi_read_timeout 30s;
+        client_max_body_size 1200000;
+    }
+    location = /alta/admin/api.php {
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME /opt/topfitness-formulario/releases/recovery-6326-20261018T1130/public/api.php;
+        fastcgi_param TF_PORTAL admin;
+        fastcgi_param HTTPS on;
+        fastcgi_param HTTP_PROXY "";
+        fastcgi_pass unix:/run/topfitness-altas/php.sock;
+        fastcgi_read_timeout 30s;
+        client_max_body_size 1200000;
+    }
+    location ~ "^/alta/(?:admin/)?assets/(?<tf_alta_asset>[A-Za-z0-9_.-]+[.](css|js|jpg|png|ico|svg|woff2))$" {
+        alias /opt/topfitness-formulario/current/public/assets/$tf_alta_asset;
+        add_header X-Content-Type-Options nosniff always;
+        add_header Cache-Control "private, no-store" always;
+    }
+    location /alta/ { return 404; }
+    location = /webhooks/whatsapp/flows {
+        proxy_pass http://127.0.0.1:8091;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_read_timeout 15s;
+    }
+    location = /webhooks/whatsapp {
+        proxy_pass http://127.0.0.1:8091;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_read_timeout 15s;
+    }
+    location ~ "^/calendario/[A-Za-z0-9_-]{43}/reservas-topfitness[.]ics$" {
+        proxy_pass http://127.0.0.1:8091;
+        proxy_set_header Host $host;
+        add_header Cache-Control "private, no-store" always;
+    }
+    location = / {
+        default_type text/plain;
+        return 302 /reservas/;
+    }
+    include /etc/nginx/snippets/topfitness-hsts.conf;
+    include /etc/nginx/snippets/topfitness-cuentas.conf;
+    location / { return 404; }
+
+    listen [::]:443 ssl ipv6only=on; # managed by Certbot
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/whatsapp.gimnasio.example/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/whatsapp.gimnasio.example/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+}
+server {
+    if ($host = whatsapp.gimnasio.example) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    listen 80;
+    listen [::]:80;
+    server_name whatsapp.gimnasio.example;
+    include /etc/nginx/snippets/topfitness-web.conf;
+    return 404; # managed by Certbot
+
+
+}

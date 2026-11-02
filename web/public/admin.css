@@ -1,0 +1,245 @@
+/* Top Fitness · panel de administración */
+@font-face{font-family:'Bebas Neue';src:url('fonts/BebasNeue-400.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Barlow';src:url('fonts/Barlow-500.woff2') format('woff2');font-weight:500;font-display:swap}
+@font-face{font-family:'Barlow';src:url('fonts/Barlow-600.woff2') format('woff2');font-weight:600;font-display:swap}
+@font-face{font-family:'Barlow';src:url('fonts/Barlow-700.woff2') format('woff2');font-weight:700;font-display:swap}
+
+:root{
+  color-scheme:dark;
+  --ink:#0a0d0a;--panel:#121712;--panel-2:#1a211a;--line:rgba(255,255,255,.1);--line-2:rgba(255,255,255,.06);
+  --text:#f3f6f1;--muted:#9ba89b;--lime:#22f03a;--lime-ink:#04210a;--orange:#ff8000;--amber:#ffb340;--danger:#ff5a4d;
+  --display:'Bebas Neue','Arial Narrow',Impact,sans-serif;
+  --body:'Barlow',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{min-height:100vh;display:flex;flex-direction:column;background:radial-gradient(48rem 24rem at 6% -8rem,rgba(34,240,58,.09),transparent 70%),var(--ink);color:var(--text);font-family:var(--body);font-weight:500;font-size:17px;line-height:1.45;padding-bottom:40px}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer;border:0}
+:focus-visible{outline:3px solid var(--lime);outline-offset:2px}
+h2{font-family:var(--display);font-weight:400;font-size:34px;letter-spacing:.04em;line-height:1.05}
+h3{font-size:19px;font-weight:700}
+
+/* ---------- cabecera ---------- */
+.top-banner{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:14px 36px;background:#0d110d;border-bottom:2px solid var(--lime)}
+.top-banner img{height:46px;width:auto;display:block}
+.logo-right img{height:38px}
+.banner-text{font-family:var(--display);font-weight:400;font-size:clamp(30px,3vw,44px);letter-spacing:.06em;line-height:1;color:#fff;text-align:center}
+
+/* ---------- pestañas ---------- */
+.menu-superior{position:sticky;top:0;z-index:900;display:flex;justify-content:center;gap:10px;padding:12px 24px;background:rgba(10,13,10,.96);border-bottom:1px solid var(--line)}
+.tab-button{min-height:52px;padding:0 26px;border-radius:12px;border:1.5px solid var(--line);background:var(--panel);color:var(--muted);font-size:18px;font-weight:700;transition:background .2s,color .2s,border-color .2s}
+.tab-button:hover{color:var(--text);border-color:rgba(255,255,255,.25)}
+.tab-button.active{background:var(--lime);border-color:var(--lime);color:var(--lime-ink)}
+
+main,.tab-content{padding:26px 36px}
+.tab-content{display:none}
+.tab-content.active{display:block;animation:fade .3s ease both}
+.section-hint{margin:8px 0 18px;max-width:70ch;color:var(--muted);font-size:17px}
+.section-hint b{color:var(--text)}
+
+/* ---------- inscripciones ---------- */
+.calendar-container{display:flex;flex-wrap:wrap;align-items:center;gap:18px 40px;margin-bottom:20px;padding:16px 20px;border-radius:16px;background:var(--panel);border:1px solid var(--line)}
+.cal-field{display:flex;align-items:center;gap:14px}
+.cal-label{font-weight:700;font-size:18px}
+#inscripciones input[type="date"]{min-height:52px;padding:0 16px;border-radius:12px;border:1.5px solid var(--line);background:var(--panel-2);color:var(--text);font-size:19px;font-weight:600}
+.how-to{display:flex;flex-wrap:wrap;gap:8px 26px;list-style:none;color:var(--muted);font-size:16px;font-weight:600}
+.how-to li{display:flex;align-items:center;gap:10px}
+.how-to b{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--lime);color:var(--lime-ink);font-family:var(--display);font-weight:400;font-size:19px;line-height:1}
+
+.bottom-container{display:grid;grid-template-columns:minmax(260px,340px) minmax(0,1fr);gap:20px;align-items:start}
+.left-side,.right-side{background:var(--panel);border-radius:16px;border:1px solid var(--line);padding:16px}
+.left-side{max-height:calc(100vh - 290px);min-height:120px;overflow-y:auto}
+.left-side:empty::before{content:'Este día no hay clases programadas.';color:var(--muted)}
+.left-side button{display:block;width:100%;text-align:left;margin:0 0 8px!important;padding:14px 16px;border-radius:12px;border:1.5px solid var(--line);background:var(--panel-2);color:var(--muted);font-size:18px;font-weight:600;transition:background .15s,border-color .15s,color .15s}
+.left-side button:last-child{margin-bottom:0!important}
+.left-side button b{display:block;font-family:var(--display);font-weight:400;font-size:26px;letter-spacing:.05em;line-height:1.05;color:var(--text)}
+.left-side button:hover{border-color:rgba(255,255,255,.28)}
+.left-side button.active{background:var(--lime);border-color:var(--lime);color:var(--lime-ink)}
+.left-side button.active b{color:var(--lime-ink)}
+
+.right-side{min-height:200px}
+.right-side:empty::before{content:'Toca una clase de la lista para ver quién está apuntado.';color:var(--muted);font-size:18px}
+#mensaje-inscripciones{margin-bottom:14px;font-size:30px}
+.tabla-container{margin-top:16px;overflow-x:auto}
+.right-side table,.tabla{width:100%;border-collapse:collapse}
+.right-side th,.tabla th{padding:10px 12px;text-align:left;font-size:15px;font-weight:700;color:var(--muted);border-bottom:1.5px solid var(--line)}
+.right-side td,.tabla td{padding:12px;border-bottom:1px solid var(--line-2);font-size:18px}
+.right-side tbody tr:hover{background:rgba(255,255,255,.03)}
+/* columnas: casilla y número estrechas */
+.right-side table th:nth-child(1),.right-side table td:nth-child(1){width:56px}
+.right-side table th:nth-child(2),.right-side table td:nth-child(2){width:64px}
+input[type="checkbox"]{width:22px;height:22px;accent-color:var(--lime);cursor:pointer}
+.bulk-actions{margin-top:16px}
+#cola-admin{margin-top:22px!important;padding-top:16px!important;border-top:1px solid var(--line)!important}
+#cola-admin h3{font-size:22px!important;margin:0 0 10px!important;color:var(--amber)}
+
+/* botones */
+.btnAnadir,.btnAñadir,#boton-inscripciones,.btn-add{min-height:50px;padding:0 24px;border-radius:12px;background:var(--lime);color:var(--lime-ink);font-size:18px;font-weight:700;transition:transform .12s var(--ease),filter .2s}
+.btnAnadir:hover,#boton-inscripciones:hover,.btn-add:hover{filter:brightness(1.08)}
+.btnAnadir:active,.btn-add:active,.btn:active,.tab-button:active{transform:scale(.97)}
+.btnEliminar{min-height:42px;padding:0 16px;border-radius:10px;border:1.5px solid rgba(255,90,77,.6);background:transparent;color:var(--danger);font-size:15px;font-weight:700;transition:background .15s,color .15s}
+.btnEliminar:hover{background:var(--danger);color:#fff}
+.btn{min-height:50px;padding:0 24px;border-radius:12px;border:1.5px solid var(--line);background:var(--panel-2);color:var(--text);font-size:17px;font-weight:700;transition:transform .12s var(--ease),filter .2s}
+.btn:disabled,.btn-add:disabled{opacity:.45;cursor:not-allowed}
+.btn-danger{background:var(--danger);border-color:var(--danger);color:#fff}
+.btn-danger:disabled{background:transparent;color:var(--danger);border-color:rgba(255,90,77,.4)}
+.btn-secondary,#noEliminar{background:transparent;border-color:rgba(255,255,255,.28)}
+
+/* ---------- gestión de horarios ---------- */
+#gestion-horarios h2{margin-bottom:0}
+.table-wrap{overflow-x:auto;border-radius:16px;border:1px solid var(--line);background:var(--panel)}
+#tabla-horarios{width:100%;border-collapse:collapse;min-width:760px}
+#tabla-horarios th{padding:14px 12px;text-align:left;font-size:15px;font-weight:700;color:var(--muted);background:var(--panel-2);border-bottom:1.5px solid var(--line)}
+#tabla-horarios td{padding:10px 12px;border-bottom:1px solid var(--line-2);vertical-align:middle}
+#tabla-horarios tbody tr:last-child td{border-bottom:0}
+#tabla-horarios tr.con-inscritos{background:rgba(34,240,58,.06)}
+#tabla-horarios select,#tabla-horarios input{width:100%!important;min-height:46px;padding:0 12px!important;border-radius:10px!important;border:1.5px solid var(--line)!important;background:var(--panel-2);color:var(--text);font-size:17px;text-align:left!important}
+#tabla-horarios input:focus,#tabla-horarios select:focus,.modal input:focus{outline:none;border-color:var(--lime)!important;box-shadow:0 0 0 3px rgba(34,240,58,.18)}
+#tabla-horarios td.acciones{white-space:nowrap}
+#tabla-horarios td button{min-height:44px;padding:0 18px;border-radius:10px;font-size:16px;font-weight:700;margin-right:6px;background:var(--lime);color:var(--lime-ink);transition:filter .2s}
+#tabla-horarios td.acciones button:nth-child(2){background:transparent;border:1.5px solid rgba(255,90,77,.6);color:var(--danger)}
+#tabla-horarios td.acciones button:nth-child(2):hover{background:var(--danger);color:#fff}
+#tabla-horarios td button:hover{filter:brightness(1.08)}
+.badge-inscritos{display:inline-block;min-width:28px;margin-left:8px;padding:1px 9px;border-radius:999px;background:rgba(34,240,58,.18);border:1px solid rgba(34,240,58,.5);color:var(--lime);font-size:15px;font-weight:700;text-align:center}
+.btn-add{margin-top:18px}
+
+/* ---------- imagen del horario ---------- */
+.upload-card{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:22px;align-items:start;margin-top:6px;padding:20px;border-radius:16px;background:var(--panel);border:1px solid var(--line)}
+.upload-card .preview{display:flex;align-items:center;justify-content:center;min-height:260px;padding:8px;background:#fff;border-radius:12px;overflow:hidden}
+.upload-card .preview img{max-width:100%;height:auto;display:block}
+.upload-controls{display:flex;flex-direction:column;gap:16px}
+.upload-controls input[type="file"]{padding:14px;border-radius:12px;border:1.5px dashed rgba(255,255,255,.3);background:var(--panel-2);font-size:16px}
+.upload-controls input[type="file"]::file-selector-button{margin-right:14px;min-height:42px;padding:0 16px;border:0;border-radius:10px;background:var(--lime);color:var(--lime-ink);font-weight:700;cursor:pointer}
+.upload-controls .checkbox{display:flex;align-items:center;gap:12px;color:var(--text);font-size:17px}
+.upload-controls .hint{min-height:1.4em;font-size:17px;color:var(--lime);font-weight:600}
+#btn-subir-horario{min-height:56px;background:var(--lime);border-color:var(--lime);color:var(--lime-ink);font-size:19px}
+#btn-subir-horario:disabled{background:var(--panel-2);border-color:var(--line);color:var(--muted)}
+
+/* ---------- ventanas emergentes ---------- */
+.modal{position:fixed;inset:0;z-index:2000;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(4,6,4,.78)}
+.modal-content{width:min(480px,100%);padding:26px 28px;border-radius:18px;background:var(--panel);border:1px solid var(--line);text-align:left;box-shadow:0 24px 60px rgba(0,0,0,.6);animation:pop .3s var(--ease) both}
+.modal-content h2{font-size:30px;margin-bottom:12px}
+.modal-content p{color:var(--muted);margin-bottom:6px}
+.modal-content label{display:block;margin:14px 0 6px;font-weight:700;color:var(--muted);font-size:16px}
+.modal-content input{width:100%;min-height:52px;padding:0 14px;border-radius:12px;border:1.5px solid var(--line);background:var(--panel-2);color:var(--text);font-size:19px}
+.modal-content>div[style]{display:flex;gap:10px;margin-top:20px!important}
+#guardarInscripcion{flex:1;min-height:52px;border-radius:12px;background:var(--lime);color:var(--lime-ink);font-size:18px;font-weight:700}
+#cancelarInscripcion{min-height:52px;padding:0 22px;border-radius:12px;background:transparent;border:1.5px solid rgba(255,255,255,.28);font-size:18px;font-weight:700}
+.modal-buttons{display:flex;gap:12px;margin-top:20px}
+.modal-buttons .btn{flex:1}
+.modal-error>button{margin-top:16px;min-height:50px;padding:0 24px;border-radius:12px;background:var(--lime);color:var(--lime-ink);font-weight:700}
+#modal-exito{display:none;position:fixed;inset:0;z-index:3000;align-items:center;justify-content:center;background:rgba(4,6,4,.7)}
+#modal-exito .modal-content{width:auto;max-width:90vw;padding:22px 32px;border-top:4px solid var(--lime);text-align:center}
+#modal-exito .modal-content p{margin:0;color:var(--text);font-size:22px;font-weight:700}
+
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,.2);border-radius:10px}
+::-webkit-scrollbar-track{background:transparent}
+
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes pop{from{opacity:0;transform:translateY(10px) scale(.97)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+@media(max-width:1000px){
+  .upload-card{grid-template-columns:1fr}
+  .bottom-container{grid-template-columns:1fr}
+  .left-side{max-height:300px}
+}
+@media(max-width:700px){
+  .top-banner{padding:12px 16px}.top-banner img{height:34px}.logo-right{display:none}
+  .banner-text{font-size:28px;text-align:left}
+  .menu-superior{padding:10px 12px;overflow-x:auto;justify-content:flex-start}
+  .tab-button{padding:0 18px;white-space:nowrap}
+  main,.tab-content{padding:18px 14px}
+}
+
+/* ---------- calendario propio ---------- */
+.datepick{position:relative;display:flex;align-items:center;gap:8px}
+.dp-native{position:absolute!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none!important;overflow:hidden}
+.dp-nav{display:grid;place-items:center;flex:0 0 auto;width:56px;height:56px;border-radius:12px;border:1.5px solid var(--line);background:var(--panel-2);color:var(--text);transition:background .15s,border-color .15s,transform .12s var(--ease)}
+.dp-nav svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.dp-nav:hover{border-color:rgba(255,255,255,.3)}
+.dp-nav:active{transform:scale(.93)}
+.dp-current{min-width:290px;min-height:56px;padding:0 20px;border-radius:12px;border:1.5px solid var(--line);background:var(--panel-2);color:var(--text);font-size:21px;font-weight:700;text-align:center;transition:border-color .15s}
+.dp-current span::first-letter{text-transform:uppercase}
+.dp-current:hover,.dp-current[aria-expanded="true"]{border-color:var(--lime)}
+.dp-today{min-height:56px;padding:0 22px;border-radius:12px;border:1.5px solid rgba(34,240,58,.55);background:transparent;color:var(--lime);font-size:18px;font-weight:700;transition:background .15s,color .15s}
+.dp-today:hover{background:var(--lime);color:var(--lime-ink)}
+.dp-pop{position:absolute;top:calc(100% + 10px);left:0;z-index:1500;width:min(430px,calc(100vw - 28px));padding:16px;border-radius:18px;background:var(--panel);border:1px solid var(--line);box-shadow:0 24px 60px rgba(0,0,0,.65);animation:pop .22s var(--ease) both}
+.dp-pop[hidden]{display:none}
+.dp-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
+.dp-head strong{font-family:var(--display);font-weight:400;font-size:30px;letter-spacing:.05em;text-transform:capitalize}
+.dp-week,.dp-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.dp-week span{text-align:center;font-size:15px;font-weight:700;color:var(--muted);padding-bottom:4px}
+.dp-day{height:54px;border-radius:12px;border:1.5px solid transparent;background:var(--panel-2);color:var(--text);font-size:21px;font-weight:700;transition:background .12s,transform .12s var(--ease)}
+.dp-day:hover{background:#26302a}
+.dp-day:active{transform:scale(.93)}
+.dp-day.is-today{border-color:rgba(34,240,58,.6)}
+.dp-day.is-selected{background:var(--lime);border-color:var(--lime);color:var(--lime-ink)}
+
+.btn-primary{background:var(--lime);border-color:var(--lime);color:var(--lime-ink)}
+.aviso-texto{white-space:pre-line;font-size:19px;color:var(--text)!important;margin:4px 0 18px!important}
+.modal-error .btn{width:100%}
+
+@media(max-width:700px){
+  .cal-field{flex-direction:column;align-items:flex-start;width:100%}
+  .datepick{flex-wrap:wrap;width:100%}
+  .dp-current{flex:1 1 0;min-width:0}
+  .dp-nav{width:52px;height:52px}
+}
+
+/* ---------- cancelar clase / apuntar a varias ---------- */
+.btn-multi{margin-left:auto;min-height:52px;padding:0 24px;border-radius:12px;border:1.5px solid rgba(34,240,58,.55);background:transparent;color:var(--lime);font-size:18px;font-weight:700;transition:background .15s,color .15s}
+.btn-multi:hover{background:var(--lime);color:var(--lime-ink)}
+.btn-cancelar-clase{margin-left:10px;min-height:50px;padding:0 20px;border-radius:12px;border:1.5px solid rgba(255,90,77,.6);background:transparent;color:var(--danger);font-size:18px;font-weight:700;transition:background .15s,color .15s}
+.btn-cancelar-clase:hover{background:var(--danger);color:#fff}
+#boton-inscripciones:disabled{opacity:.4;cursor:not-allowed}
+.left-side button.cancelada{opacity:.75;border-color:rgba(255,90,77,.45)}
+.left-side button.cancelada b{text-decoration:line-through;text-decoration-color:var(--danger)}
+.left-side button.cancelada.active{background:rgba(255,90,77,.18);color:var(--text);border-color:var(--danger)}
+.left-side button.cancelada.active b{color:var(--text)}
+.tag-cancelada{display:inline-block;margin-left:10px;padding:1px 10px;border-radius:999px;background:var(--danger);color:#fff;font-size:14px;font-weight:700;vertical-align:middle}
+.clase-estado.cancelada{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 20px;margin:0 0 14px;padding:14px 18px;border-radius:14px;background:rgba(255,90,77,.12);border:1.5px solid rgba(255,90,77,.55)}
+.ce-texto{display:flex;flex-direction:column;gap:2px;flex:1 1 300px}
+.ce-texto strong{font-size:20px;color:var(--danger)}
+.ce-texto span{color:var(--text);font-size:17px}
+.cc-clase{font-family:var(--display);font-size:26px;letter-spacing:.05em;color:var(--text)!important}
+.cc-aviso{padding:10px 14px;border-radius:10px;background:var(--panel-2);color:var(--text)!important}
+
+.modal-content.modal-wide{width:min(960px,100%);max-height:92vh;overflow-y:auto}
+.multi-campos{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.multi-campos label,.multi-filtro label{margin-top:4px}
+.multi-filtro{display:flex;align-items:center;gap:12px;margin:16px 0 4px}
+.multi-filtro label{margin:0}
+.multi-filtro select{min-height:48px;padding:0 14px;border-radius:12px;border:1.5px solid var(--line);background:var(--panel-2);color:var(--text);font-size:18px}
+.multi-dias{margin-top:6px}
+.multi-dia{padding:14px 0;border-top:1px solid var(--line-2)}
+.multi-dia h3{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px;font-size:20px}
+.multi-todas{min-height:40px;padding:0 14px;border-radius:10px;border:1.5px solid var(--line);background:transparent;color:var(--muted);font-size:15px;font-weight:700}
+.multi-todas:hover{color:var(--text);border-color:rgba(255,255,255,.3)}
+.multi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:8px}
+.multi-sesion{display:flex;flex-direction:column;align-items:flex-start;gap:0;min-height:64px;padding:8px 14px;border-radius:12px;border:1.5px solid var(--line);background:var(--panel-2);color:var(--text);text-align:left;transition:background .12s,border-color .12s}
+.multi-sesion strong{font-family:var(--display);font-weight:400;font-size:23px;letter-spacing:.05em;line-height:1.05}
+.multi-sesion span{font-size:15px;color:var(--muted);font-weight:600}
+.multi-sesion[aria-pressed="true"]{background:rgba(34,240,58,.14);border-color:var(--lime);box-shadow:inset 0 0 0 1.5px var(--lime)}
+.multi-sesion[aria-pressed="true"] span{color:var(--lime)}
+.multi-sesion.is-cancelada{opacity:.45;cursor:not-allowed}
+.multi-sesion.is-cancelada span{color:var(--danger)}
+.multi-pie{position:sticky;bottom:-26px;margin-top:16px;padding:14px 0 0;background:var(--panel)}
+.multi-pie .btn-primary{flex:1}
+.multi-resultados{list-style:none;margin:10px 0 20px}
+.multi-resultados li{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 16px;padding:10px 0;border-bottom:1px solid var(--line-2);font-size:18px}
+.multi-resultados .res-clase{font-weight:600}
+.multi-resultados .res-ok strong{color:var(--lime)}
+.multi-resultados .res-espera strong{color:var(--amber)}
+.multi-resultados .res-info strong{color:var(--muted)}
+.multi-resultados .res-error strong{color:var(--danger)}
+.modal-wide>.btn-primary{width:100%}
+@media(max-width:700px){.multi-campos{grid-template-columns:1fr}.btn-multi{margin-left:0;width:100%}.btn-cancelar-clase{margin:10px 0 0;width:100%}}
+
+/* Controles comunes con Centro, Altas y Caja. */
+body,button,input,select,textarea{font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+button,input,select,textarea{border-radius:8px;clip-path:none}
+h1,h2,h3,.top-banner{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;letter-spacing:0}
+button{min-height:44px}input,select{min-height:42px}

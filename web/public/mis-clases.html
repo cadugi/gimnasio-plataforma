@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<link rel="icon" href="icons/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="manifest" href="manifest.json">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0a0d0a">
+<title>Mis clases · Top Fitness</title>
+<link rel="stylesheet" href="avisos.css?v=3"><link rel="stylesheet" href="tabbar.css?v=3">
+<style>.clase{margin:12px 0;padding:16px;border:2px solid var(--line);border-radius:16px;background:var(--panel)}.clase h3{font-size:24px;margin:0 0 4px;display:block}.clase .cuando{font-size:22px;font-weight:700}.etq{display:inline-block;margin-top:8px;padding:6px 12px;border-radius:999px;border:2px solid var(--orange);color:var(--orange);font-weight:700}.etq.ok{border-color:var(--lime);color:var(--lime)}.etq.mal{border-color:var(--danger);color:var(--danger)}.oferta{border-color:var(--lime)}.accion{margin-top:12px}.accion button{margin-top:10px}</style>
+</head>
+<body class="has-tabbar">
+<header class="top-banner"><img src="img/logo-tf.png" alt="TopFitness" style="height:30px;display:block"></header>
+<main class="content" id="main">
+  <h1>Mis clases</h1>
+  <p id="err" class="msg error" role="alert" hidden></p>
+  <p id="msg" class="msg" role="status" aria-live="polite" hidden></p>
+  <p id="compartida" class="note" hidden>Esta pantalla es compartida y no guarda datos. Mira tus clases desde tu móvil.</p>
+
+  <section id="s-ident" hidden aria-labelledby="t-ident">
+    <h2 id="t-ident">¿Quién eres?</h2>
+    <p>Escribe tu nombre y tu teléfono para ver tus clases. Solo tú las verás en este móvil.</p>
+    <form id="f-ident" novalidate>
+      <label for="nombre">Tu nombre y apellidos</label>
+      <input id="nombre" name="nombre" autocomplete="name" autocapitalize="words" required>
+      <label for="telefono">Tu teléfono móvil</label>
+      <input id="telefono" name="telefono" type="tel" inputmode="tel" autocomplete="tel" required>
+      <label class="check"><input type="checkbox" id="recordar" checked> <span>Recordar mis datos en este móvil</span></label>
+      <button type="submit" class="primary" id="b-ident">Ver mis clases</button>
+    </form>
+  </section>
+
+  <section id="s-lista" hidden>
+    <p class="note">Hola, <b id="quien"></b></p>
+    <h2>Tus reservas</h2>
+    <div id="reservas"></div>
+    <h2>Lista de espera</h2>
+    <div id="espera"></div>
+    <a class="avisos-link" href="./">Reservar otra clase</a>
+    <p class="note" id="aviso-estado"></p>
+    <p class="note">¿Falta alguna clase o hay un error? Díselo en recepción.</p>
+    <button type="button" class="secondary" id="b-salir">Cerrar sesión</button>
+    <p class="note">Al cerrar sesión este móvil deja de recibir avisos y se olvidan tus datos aquí.</p>
+  </section>
+</main>
+<nav class="tabbar" aria-label="Menú principal">
+<a href="./"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span>Reservar</span></a>
+<a href="mis-clases.html" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l4 4 10-10"/><rect x="3" y="3" width="18" height="18" rx="3"/></svg><span>Mis clases</span></a>
+<a href="avisos.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 17V11a6 6 0 0112 0v6l2 2H4z"/><path d="M10 21h4"/></svg><span>Avisos</span></a>
+</nav><script src="mis-clases.js?v=3" defer></script></body></html>
