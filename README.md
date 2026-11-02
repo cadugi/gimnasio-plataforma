@@ -4,6 +4,28 @@
 
 Sistema completo que desarrollé y mantengo en producción para un gimnasio real: altas de socios con firma en tablet, caja, reservas de clases con lista de espera, avisos push y un bot de WhatsApp. Este repositorio es una **versión anonimizada** para portafolio: sin credenciales, sin datos de socios y con dominio, IPs y correos sustituidos por valores de ejemplo.
 
+## Capturas
+
+Capturas de la aplicación en ejecución con **datos ficticios** (entorno de demostración y servidor de pruebas; ningún dato real).
+
+### Altas y contratos (panel de recepción)
+
+| Resumen | Contratos |
+|---|---|
+| ![Resumen](docs/capturas/altas-resumen.png) | ![Contratos](docs/capturas/altas-contratos.png) |
+| **Detalle de contrato firmado** | **Domiciliaciones del mes** |
+| ![Detalle](docs/capturas/altas-detalle-contrato.png) | ![Domiciliaciones](docs/capturas/altas-domiciliaciones.png) |
+
+### Reservas en el móvil del socio (PWA)
+
+| Reservar | Mis clases y lista de espera | Oferta de plaza liberada |
+|---|---|---|
+| <img src="docs/capturas/movil-reservar.png" width="240"> | <img src="docs/capturas/movil-mis-clases.png" width="240"> | <img src="docs/capturas/movil-oferta-plaza.png" width="240"> |
+
+### Recepción: avisos y ofertas
+
+![Avisos y ofertas](docs/capturas/recepcion-avisos-ofertas.png)
+
 ## Qué resuelve
 
 | Módulo | Descripción | Stack |
@@ -30,7 +52,7 @@ Sistema completo que desarrollé y mantengo en producción para un gimnasio real
 
 - Credenciales, tokens, claves privadas y SSH (se configuran por variables de entorno; ver `.env.example`).
 - Bases de datos, copias de seguridad, exports de socios y contratos.
-- Capturas de pantalla y resultados de pruebas con datos reales.
+- Capturas y resultados de pruebas con datos reales (las capturas incluidas son de un entorno de demostración).
 - Dominio, IPs y correos de producción (sustituidos por `gimnasio.example`, `203.0.113.x` y `example.com`).
 
 ## Pruebas
